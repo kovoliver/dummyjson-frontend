@@ -2,6 +2,7 @@ import axios, { type AxiosInstance } from "axios";
 
 const api: AxiosInstance = axios.create({
     baseURL: 'https://dummyjson.com',
+    withCredentials:true,
     headers: {
         'Content-Type': 'application/json',
     },

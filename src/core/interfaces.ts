@@ -1,5 +1,6 @@
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { paddings, bgColors, textColors, borderColors } from "./theme";
+import type { User } from "./types";
 
 export interface ButtonProps {
     text:string;
@@ -11,14 +12,25 @@ export interface ButtonProps {
     onClick?:(()=>void)|null;
 }
 
+export interface UserContextType {
+    user: User | null;
+    accessToken: string | null;
+    isAuthenticated: boolean;
+    loading: boolean;
+    login: (userData: User, token: string) => void;
+    logout: () => void;
+    setLoading: (loading: boolean) => void;
+}
+
 export interface InputProps {
+    type:"text"|"password"|"email"|"date"|"time";
     placeholder:string;
     size:keyof typeof paddings;
     textColor:keyof typeof textColors;
     bgColor:keyof typeof bgColors;
     borderColor: keyof typeof borderColors;
     customClasses?:string[]|null;
-    onChange?:(()=>void)|null;
+    onChange?:((value:any)=>void)|null;
 }
 
 export interface BoxProps {
@@ -39,3 +51,5 @@ export interface AlertProps extends BoxProps {
 export interface SimpleBoxProps extends Omit<BoxProps, 'bgColor' | 'textColor'> {};
 
 export type SimpleButtonProps = Pick<ButtonProps, "text" | "size" | "customClasses" | "icon" | "onClick">;
+
+export type SimpleInputProps = Omit<InputProps, "bgColor" | "textColor" | "borderColor">;

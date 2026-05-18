@@ -1,30 +1,30 @@
 import type { InputProps } from "../../core/interfaces";
-import { bgActives, bgColors, borderColors, borderFocuses, fontSizes, inputPaddings, textColors } from "../../core/theme";
+import { bgColors, borderColors, borderFocuses, fontSizes, inputPaddings, textColors } from "../../core/theme";
 import { getValueByKey } from "../../core/utils";
 
-export default function Input({ placeholder, borderColor, textColor, 
+export default function Input({ type, placeholder, borderColor, textColor,
     bgColor, size, customClasses = null, onChange = null }: InputProps) {
     const colorClass = getValueByKey(textColors, textColor, "textColors");
     const bgClass = getValueByKey(bgColors, bgColor, "bgColors");
-    const activeClass = getValueByKey(bgActives, bgColor, "bgActive");
     const fontSizeClass = getValueByKey(fontSizes, size, "fontSizes");
-    const paddingClass = getValueByKey(inputPaddings, size, "paddings");
+    const paddingClass = getValueByKey(inputPaddings, size, "inputPaddings");
     const borderClass = getValueByKey(borderColors, borderColor, "border");
     const focusClass = getValueByKey(borderFocuses, borderColor, "border");
 
     let classes = [
-        colorClass, bgClass, 
-        borderClass, focusClass, 
-        activeClass, fontSizeClass, 
-        paddingClass
+        colorClass, fontSizeClass, 
+        paddingClass,
+        borderClass, focusClass
     ].join(" ").trim();
 
-    if(customClasses) classes += " " + customClasses.join(" ");
+    if (customClasses) classes += " " + customClasses.join(" ");
 
     return (
-        <input 
-            className={`rounded border-2 outline-none ${classes}`} 
-            placeholder={placeholder} onChange={onChange || undefined}
+        <input
+            type={type}
+            className={`border-2 ${classes}`}
+            placeholder={placeholder}
+            onChange={onChange || undefined}
         />
     );
 }

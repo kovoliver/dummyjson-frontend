@@ -135,4 +135,3 @@ export const fontSizes = {
     lg: "text-xl",
     xl: "text-2xl",
 };
-

@@ -7,16 +7,35 @@ export type Review = {
 }
 
 export type Product = {
-    id:number;
-    brand:string;
-    title:string;
-    description:string;
-    price:number;
-    discountPercentage:number;
-    rating:number;
-    stock:number;
-    tags:string[];
-    images:string[];
-    thumbnail:string;
-    reviews:Review[];
+    id: number;
+    brand: string;
+    title: string;
+    description: string;
+    price: number;
+    discountPercentage: number;
+    rating: number;
+    stock: number;
+    tags: string[];
+    images: string[];
+    thumbnail: string;
+    reviews: Review[];
 }
+
+export type AuthResponse = {
+    id: number;
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    image: string;
+    accessToken: string;
+    refreshToken: string;
+};
+
+export type User = Pick<AuthResponse, "id" | "username" | "email" | "firstName" | "lastName" | "gender">;
+
+export type UserLogin = {
+    username: string;
+    password: string;
+};
