@@ -1,4 +1,4 @@
-import { bgColors, paddings, textColors } from "../../core/theme";
+import { paddings } from "../../core/theme";
 import { getValueByKey } from "../../core/utils";
 import type { BoxProps } from "../../core/interfaces";
 
@@ -12,15 +12,12 @@ export default function Box({
     rounded = "rounded-md",
     customClasses = []
 }: BoxProps) {
-
-    const bgClass = getValueByKey(bgColors, bgColor, "bgColors");
-    const textClass = getValueByKey(textColors, textColor, "textColors");
     const paddingClass = getValueByKey(paddings, padding, "paddings");
 
     const classes = [
-        bgClass,
-        textClass,
-        `ring-${borderWidth} ring-inset ring-black/20`,
+        `bg-${bgColor}`,
+        `text-${textColor}`,
+        `ring-${borderWidth} ring-black/25`,
         borderWidth,
         rounded,
         paddingClass,

@@ -31,7 +31,7 @@ function App() {
                     </Route>
 
                     <Route element={<DashboardLayout />}>
-
+                        
                     </Route>
                 </Routes>
             </BrowserRouter>

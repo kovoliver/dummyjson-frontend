@@ -1,125 +1,25 @@
-// import { createColorObject } from "./utils";
+import { cva } from "class-variance-authority";
 
-// const colors:Record<string, string> = {
-//     'primary':'primary',
-//     'secondary':'secondary',
-//     'danger':'danger',
-//     'warning':'warning',
-//     'main':'blue-500',
-//     'accent':'orange-500',
-//     'white':'white',
-//     'black':'black',
-// };
+export const ThemeColor = {
+    Primary: "primary",
+    Secondary: "secondary",
+    Danger: "danger",
+    Warning: "warning",
+    Main: "main",
+    Accent: "accent",
+    White: "white",
+    Black: "black",
+    Gray: "gray",
+} as const;
 
-// export const bgColors = createColorObject(colors, "bg");
-// export const textColors = createColorObject(colors, "text");
-// export const borderColors = createColorObject(colors, "border");
-
-export const bgColors = {
-    primary: "bg-primary",
-    secondary: "bg-secondary",
-    danger: "bg-danger",
-    warning: "bg-warning",
-    main: "bg-blue-500",
-    accent: "bg-orange-500",
-    white: "bg-white",
-    black: "bg-black"
-};
-
-export const textColors = {
-    primary: "text-primary",
-    secondary: "text-secondary",
-    danger: "text-danger",
-    warning: "text-warning",
-    main: "text-blue-500",
-    accent: "text-orange-500",
-    white: "text-white",
-    black: "text-black"
-};
-
-export const borderColors = {
-    primary: "border-primary",
-    secondary: "border-secondary",
-    danger: "border-danger",
-    warning: "border-warning",
-    main: "border-blue-500",
-    accent: "border-orange-500",
-    white: "border-white",
-    black: "border-black"
-};
-
-export const bgHovers = {
-    primary: "hover:brightness-110",
-    secondary: "hover:brightness-90",
-    danger: "hover:bg-red-600",
-    warning: "hover:bg-amber-500",
-    main: "hover:bg-blue-500",
-    accent: "hover:bg-orange-600",
-    white: "hover:bg-slate-100",
-    black: "hover:bg-slate-800"
-};
-
-export const bgActives = {
-    primary: "active:brightness-125",
-    secondary: "active:brightness-75",
-    danger: "active:bg-red-700",
-    warning: "active:bg-amber-600",
-    main: "active:bg-blue-600",
-    accent: "active:bg-orange-700",
-    white: "active:bg-slate-200",
-    black: "active:bg-slate-700"
-};
-
-export const borderHovers = {
-    primary: "hover:brightness-110",
-    secondary: "hover:brightness-90",
-    danger: "hover:border-red-600",
-    warning: "hover:border-amber-500",
-    main: "hover:border-blue-500",
-    accent: "hover:border-orange-600",
-    white: "hover:border-slate-200",
-    black: "hover:border-slate-700"
-};
-
-export const borderActives = {
-    primary: "active:brightness-125",
-    secondary: "active:brightness-75",
-    danger: "active:border-red-700",
-    warning: "active:border-amber-600",
-    main: "active:border-blue-600",
-    accent: "active:border-orange-700",
-    white: "active:border-slate-300",
-    black: "active:border-slate-600"
-};
-
-export const borderFocuses = {
-    primary: "focus:ring-2 focus:ring-primary/50 outline-none",
-    secondary: "focus:ring-2 focus:ring-secondary/50 outline-none",
-    danger: "focus:border-red-800 outline-none",
-    warning: "focus:border-amber-700 outline-none",
-    main: "focus:border-blue-700 outline-none",
-    accent: "focus:border-orange-800 outline-none",
-    white: "focus:border-slate-400 outline-none",
-    black: "focus:border-slate-500 outline-none"
-};
-
-export const textHovers = {
-    primary: "hover:opacity-80",
-    secondary: "hover:opacity-80",
-    danger: "hover:text-red-600",
-    warning: "hover:text-amber-500",
-    main: "hover:text-blue-500",
-    accent: "hover:text-orange-600",
-    white: "hover:text-slate-200",
-    black: "hover:text-slate-700"
-};
+export type ThemeColorType = typeof ThemeColor[keyof typeof ThemeColor];
 
 export const paddings = {
     sm: "p-0.5",
     md: "p-2",
     lg: "p-4",
     xl: "p-8",
-    xxl:"p-10"
+    xxl: "p-10"
 };
 
 export const inputPaddings = {
@@ -129,9 +29,82 @@ export const inputPaddings = {
     xl: "px-[10px] py-[12px]",
 };
 
+export const inputSizes = {
+    xs: "px-0.5 py-0.5",
+    sm: "px-1 py-0.5 text-sm",
+    md: "px-2 py-1",
+    lg: "px-3 py-2 text-lg",
+    xl: "px-4 py-3 text-lg"
+}
+
 export const fontSizes = {
     sm: "text-sm",
     md: "text-base",
     lg: "text-xl",
     xl: "text-2xl",
 };
+
+export const InputVariants = cva(
+    "rounded-sm bg-gray-50 border-2 outline-none",
+    {
+        variants: {
+            variant: {
+                primary: "border-primary text-black focus:ring-1 focus:ring-primary",
+                secondary: "border-secondary text-black focus:ring-1 focus:ring-secondary",
+                danger: "border-danger text-black focus:ring-1 focus:ring-danger",
+                main: "border-main text-black focus:ring-1 focus:ring-main",
+                accent: "border-accent text-black focus:ring-1 focus:ring-accent",
+            },
+            size: inputSizes
+        },
+        defaultVariants: {
+            variant: "main",
+            size: "md"
+        }
+    }
+);
+
+export const ButtonVariants = cva(
+    "rounded-sm border-2 cursor-pointer transition-all outline-none focus:outline-none active:scale-[0.98]",
+    {
+        variants: {
+            variant: {
+                primary: `
+                bg-primary text-white
+                border-[color-mix(in_oklch,var(--color-primary),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-primary),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-primary),white_20%)]
+                `,
+                secondary: `
+                bg-secondary text-black
+                border-[color-mix(in_oklch,var(--color-secondary),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-secondary),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-secondary),white_20%)]
+                `,
+                danger: `
+                bg-danger text-white
+                border-[color-mix(in_oklch,var(--color-danger),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-danger),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-danger),white_20%)]
+                `,
+                main: `
+                bg-main text-white
+                border-[color-mix(in_oklch,var(--color-main),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-main),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-main),white_20%)]
+                `,
+                accent: `
+                bg-accent text-black
+                border-[color-mix(in_oklch,var(--color-accent),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-accent),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-accent),white_20%)]
+                `,
+            },
+            size: inputSizes,
+        },
+        defaultVariants: {
+            variant: "main",
+            size: "md",
+        },
+    }
+);

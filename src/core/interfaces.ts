@@ -1,16 +1,6 @@
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { paddings, bgColors, textColors, borderColors } from "./theme";
+import { paddings, type ThemeColorType } from "./theme";
 import type { User } from "./types";
-
-export interface ButtonProps {
-    text:string;
-    size:keyof typeof paddings;
-    textColor:keyof typeof textColors;
-    bgColor:keyof typeof bgColors;
-    customClasses?:string[]|null;
-    icon?:IconProp|null;
-    onClick?:(()=>void)|null;
-}
 
 export interface UserContextType {
     user: User | null;
@@ -22,13 +12,20 @@ export interface UserContextType {
     setLoading: (loading: boolean) => void;
 }
 
+export interface ButtonProps {
+    text:string;
+    variant?:"primary"|"secondary"|"danger"|"main"|"accent";
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
+    customClasses?:string[]|null;
+    icon?:IconProp|null;
+    onClick?:(()=>void)|null;
+}
+
 export interface InputProps {
     type:"text"|"password"|"email"|"date"|"time";
     placeholder:string;
-    size:keyof typeof paddings;
-    textColor:keyof typeof textColors;
-    bgColor:keyof typeof bgColors;
-    borderColor: keyof typeof borderColors;
+    variant?:"primary"|"secondary"|"danger"|"main"|"accent";
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
     onChange?:((value:any)=>void)|null;
 }
@@ -37,8 +34,8 @@ export interface BoxProps {
     children?: React.ReactNode;
     text?: string;
     padding: keyof typeof paddings;
-    textColor: keyof typeof textColors;
-    bgColor: keyof typeof bgColors;
+    textColor:ThemeColorType;
+    bgColor:ThemeColorType;
     borderWidth?:1|2|3|4|5;
     rounded?: "rounded-none" | "rounded" | "rounded-md" | "rounded-lg" | "rounded-xl" | "rounded-full";
     customClasses?: string[] | null;

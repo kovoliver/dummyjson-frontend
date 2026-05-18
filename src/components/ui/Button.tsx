@@ -1,17 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { ButtonProps } from "../../core/interfaces";
-import { bgActives, bgColors, fontSizes, inputPaddings, textColors } from "../../core/theme";
-import { getValueByKey } from "../../core/utils";
+import { ButtonVariants } from "../../core/theme";
 
-export default function Button({ text, textColor, bgColor, size, customClasses = null, icon = null, onClick = null }: ButtonProps) {
-    const colorClass = getValueByKey(textColors, textColor, "textColors");
-    const bgClass = getValueByKey(bgColors, bgColor, "bgColors");
-    const activeClass = getValueByKey(bgActives, bgColor, "bgActive");
-    const fontSizeClass = getValueByKey(fontSizes, size, "fontSizes");
-    const paddingClass = getValueByKey(inputPaddings, size, "paddings");
-
-    let classes = [colorClass, bgClass, activeClass, fontSizeClass, paddingClass].join(" ").trim();
-    if(customClasses) classes += " " + customClasses.join(" ");
+export default function Button({ text, variant, size, customClasses = null, icon = null, onClick = null }: ButtonProps) {
+    let classes = ButtonVariants({variant, size});
+    
+    classes += customClasses ? customClasses.join(" ") : "";
 
     return (
         <button 
