@@ -26,7 +26,7 @@ export interface ButtonProps {
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
     icon?:IconProp|null;
-    onClick?:Function|Promise<any>;
+    onClick?: ((...args: any[]) => any) | null;
 }
 
 export interface InputProps {
@@ -54,8 +54,4 @@ export interface AlertProps extends BoxProps {
     setIsVisible:(isVisible:boolean)=>void;
 }
 
-export interface SimpleBoxProps extends Omit<BoxProps, 'bgColor' | 'textColor'> {};
-
 export type SimpleButtonProps = Pick<ButtonProps, "text" | "size" | "customClasses" | "icon" | "onClick">;
-
-export type SimpleInputProps = Omit<InputProps, "bgColor" | "textColor" | "borderColor">;

@@ -1,34 +1,34 @@
 import Alert from "./Alert";
-import type { SimpleBoxProps } from "../../core/interfaces";
+import type { AlertProps } from "../../core/interfaces";
 
-export function AlertPrimary(props: SimpleBoxProps) {
+export function AlertPrimary(props: AlertProps) {
     return <Alert {...props} variant="primary" />;
 }
 
-export function AlertSecondary(props: SimpleBoxProps) {
+export function AlertSecondary(props: AlertProps) {
     return <Alert {...props} variant="secondary" />;
 }
 
-export function AlertDanger(props: SimpleBoxProps) {
+export function AlertDanger(props: AlertProps) {
     return <Alert {...props} variant="danger" />;
 }
 
-export function AlertWarning(props: SimpleBoxProps) {
+export function AlertWarning(props: AlertProps) {
     return <Alert {...props} variant="warning" />;
 }
 
-export function AlertMain(props: SimpleBoxProps) {
+export function AlertMain(props: AlertProps) {
     return <Alert {...props} variant="main" />;
 }
 
-export function AlertAccent(props: SimpleBoxProps) {
+export function AlertAccent(props: AlertProps) {
     return <Alert {...props} variant="accent" />;
 }
 
-export function AlertSuccess(props: SimpleBoxProps) {
+export function AlertSuccess(props: AlertProps) {
     return <Alert {...props} variant="success" />;
 }
 
-export function AlertInfo(props: SimpleBoxProps) {
+export function AlertInfo(props: AlertProps) {
     return <Alert {...props} variant="info" />;
 }

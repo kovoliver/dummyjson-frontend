@@ -10,7 +10,7 @@ export default function Button({ text, variant, size, customClasses = null, icon
     return (
         <button 
             className={`rounded ${classes}`} 
-            onClick={onClick ?? undefined}
+            onClick={onClick||undefined}
         >
             <span className={icon ? "mr-0.75" : ""}>{text}</span>
             {
