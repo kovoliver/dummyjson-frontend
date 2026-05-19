@@ -1,19 +1,19 @@
 import { useState } from "react";
-import AuthService from "../app/AuthService";
-import { InputMain } from "../components/ui/Inputs";
-import { BoxSecondary } from "../components/ui/Boxes";
-import { ButtonMain } from "../components/ui/Buttons";
-import { apiCatch } from "../core/utils";
-import { useUser } from "../components/modules/UserProvider";
-import type { User } from "../core/types";
-import { useNotify } from "../components/modules/NotificationProvider";
+import AuthService from "../../app/AuthService";
+import { InputMain } from "../../components/ui/Inputs";
+import { BoxSecondary } from "../../components/ui/Boxes";
+import { ButtonMain } from "../../components/ui/Buttons";
+import { apiCatch } from "../../core/utils";
+import { useUser } from "../../components/modules/UserProvider";
+import type { User } from "../../core/types";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const as: AuthService = new AuthService();
     const [username, setUsername] = useState<string>("emilys");
     const [password, setPassword] = useState<string>("emilyspass");
+    const navigate = useNavigate();
     const userContext = useUser();
-    const notifyContext = useNotify();
 
     async function login(e:any):Promise<void> {
         e.preventDefault();
@@ -38,7 +38,7 @@ export default function Login() {
                 response.refreshToken
             );
             
-            notifyContext.setMessage("Hát most aztán sikerült bejelentkezned barátom!");
+            navigate("/user/profile");
         } catch (err) {
             apiCatch(err);
         }

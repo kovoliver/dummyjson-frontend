@@ -13,7 +13,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const [refreshToken, setRefreshToken] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const isAuthenticated = !!user && !!accessToken;
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const login = (userData: User, accessToken: string, refreshToken:string) => {
         setUser(userData);
@@ -26,6 +26,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         setAccessToken(null);
         Cookies.set("accessToken", "", { expires:0, secure: true, sameSite: 'strict' });
         Cookies.set("refreshToken", "", { expires:0, secure: true, sameSite: 'strict' });
+        setIsAuthenticated(true);
     };
 
     const verifyUser = async () => {
@@ -43,6 +44,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
             setAccessToken(response.data.accessToken);
             setRefreshToken(response.data.refreshToken);
+            setIsAuthenticated(true);
         } catch (err) {
             console.error("Az újra-hitelesítés sikertelen", err);
             logout();

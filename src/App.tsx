@@ -12,8 +12,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GuestLayout from './components/layouts/GuestLayout';
 import DashboardLayout from './components/layouts/DashboardLayout';
 import { UserProvider } from './components/modules/UserProvider';
-import Login from './views/Login';
+import Login from './views/guest/Login';
 import NotificationProvider from './components/modules/NotificationProvider';
+import Profile from './views/user/Profile';
 
 library.add(
     faPlus, faTrash, faCheck,
@@ -34,7 +35,7 @@ function App() {
                         </Route>
 
                         <Route element={<DashboardLayout />}>
-                            
+                            <Route path="/user/profile" element={<Profile/>}/>
                         </Route>
                     </Routes>
                 </BrowserRouter>
