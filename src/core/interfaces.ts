@@ -36,7 +36,7 @@ export interface InputProps {
     variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
-    onChange?:((value:any)=>void)|null;
+    onClick?: ((...args: any[]) => any) | null;
 }
 
 export interface BoxProps {
