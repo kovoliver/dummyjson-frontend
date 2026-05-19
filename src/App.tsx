@@ -5,37 +5,41 @@ import {
     faChevronLeft, faEllipsisVertical,
     faGear, faUser, faMagnifyingGlass,
     faFloppyDisk, faCircleXmark,
-    faRightToBracket
+    faRightToBracket,
+    faSignIn
 } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GuestLayout from './components/layouts/GuestLayout';
 import DashboardLayout from './components/layouts/DashboardLayout';
 import { UserProvider } from './components/modules/UserProvider';
 import Login from './views/Login';
+import NotificationProvider from './components/modules/NotificationProvider';
 
 library.add(
     faPlus, faTrash, faCheck,
     faXmark, faChevronRight, faChevronLeft,
     faEllipsisVertical, faGear, faUser,
     faMagnifyingGlass, faFloppyDisk, faCircleXmark,
-    faRightToBracket
+    faRightToBracket, faSignIn
 );
 
 function App() {
     return (
-        <UserProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route element={<GuestLayout />}>
-                        <Route path="/login" element={<Login/>}/>
-                    </Route>
+        <NotificationProvider>
+            <UserProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route element={<GuestLayout />}>
+                            <Route path="/login" element={<Login/>}/>
+                        </Route>
 
-                    <Route element={<DashboardLayout />}>
-                        
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </UserProvider>
+                        <Route element={<DashboardLayout />}>
+                            
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </UserProvider>
+        </NotificationProvider>
     )
 }
 

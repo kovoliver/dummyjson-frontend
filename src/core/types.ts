@@ -30,7 +30,7 @@ export type AuthResponse = {
     gender: string;
     image: string;
     accessToken: string;
-    refreshToken: string;
+    refreshToken:string;
 };
 
 export type User = Pick<AuthResponse, "id" | "username" | "email" | "firstName" | "lastName" | "gender">;

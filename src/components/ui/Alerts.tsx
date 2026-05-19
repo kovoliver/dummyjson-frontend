@@ -2,33 +2,33 @@ import Alert from "./Alert";
 import type { SimpleBoxProps } from "../../core/interfaces";
 
 export function AlertPrimary(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="primary" textColor="white" />;
+    return <Alert {...props} variant="primary" />;
 }
 
 export function AlertSecondary(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="secondary" textColor="white" />;
+    return <Alert {...props} variant="secondary" />;
 }
 
 export function AlertDanger(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="danger" textColor="white" />;
+    return <Alert {...props} variant="danger" />;
 }
 
 export function AlertWarning(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="warning" textColor="black" />;
+    return <Alert {...props} variant="warning" />;
 }
 
 export function AlertMain(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="main" textColor="white" />;
+    return <Alert {...props} variant="main" />;
 }
 
 export function AlertAccent(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="accent" textColor="white" />;
+    return <Alert {...props} variant="accent" />;
 }
 
-export function AlertWhite(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="white" textColor="black" />;
+export function AlertSuccess(props: SimpleBoxProps) {
+    return <Alert {...props} variant="success" />;
 }
 
-export function AlertBlack(props: SimpleBoxProps) {
-    return <Alert {...props} bgColor="black" textColor="white" />;
+export function AlertInfo(props: SimpleBoxProps) {
+    return <Alert {...props} variant="info" />;
 }

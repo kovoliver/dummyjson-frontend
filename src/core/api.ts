@@ -1,4 +1,5 @@
 import axios, { type AxiosInstance } from "axios";
+import Cookies from "js-cookie";
 
 const api: AxiosInstance = axios.create({
     baseURL: 'https://dummyjson.com',
@@ -14,6 +15,18 @@ api.interceptors.response.use(
     (error) => {
         console.error("API Hiba:", error.response?.data?.message || "Hálózati hiba");
         return Promise.reject(error);
+    }
+);
+
+api.interceptors.request.use(
+    (config) => {
+        const token = Cookies.get('accessToken');
+
+        if (token && config.headers) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        return config;
     }
 );
 

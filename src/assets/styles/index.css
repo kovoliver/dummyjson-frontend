@@ -5,8 +5,10 @@
   --color-secondary: #efefef;
   --color-main: #8d7b68;
   --color-accent: #c8b6a6;
-  --color-danger: #e07a5f;
-  --color-warning: #f2cc8f;
+  --color-danger: #d61313;
+  --color-warning: #eda11c;
   --color-white: #ffffff;
   --color-black: #000000;
+  --color-success:#5beb73;
+  --color-info:#7ce2e6;
 }

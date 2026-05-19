@@ -1,15 +1,14 @@
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Box from "./Box";
 import type { AlertProps } from "../../core/interfaces";
 
-export default function Alert({ children, onClose, customClasses = null, ...boxProps }: AlertProps) {
-    const [isVisible, setIsVisible] = useState(true);
-
+export default function Alert({ children, onClose, customClasses = null, 
+    isVisible, setIsVisible, ...boxProps }: AlertProps) {
     if (!isVisible) return null;
 
     const handleClose = () => {
         setIsVisible(false);
+        children = null;
         if (onClose) onClose();
     };
 

@@ -52,6 +52,7 @@ export const InputVariants = cva(
                 primary: "border-primary text-black focus:ring-1 focus:ring-primary",
                 secondary: "border-secondary text-black focus:ring-1 focus:ring-secondary",
                 danger: "border-danger text-black focus:ring-1 focus:ring-danger",
+                warning: "border-warning text-black focus:ring-1 focus:ring-warning",
                 main: "border-main text-black focus:ring-1 focus:ring-main",
                 accent: "border-accent text-black focus:ring-1 focus:ring-accent",
             },
@@ -87,6 +88,12 @@ export const ButtonVariants = cva(
                 hover:bg-[color-mix(in_oklch,var(--color-danger),white_10%)]
                 active:bg-[color-mix(in_oklch,var(--color-danger),white_20%)]
                 `,
+                warning: `
+                bg-warning text-white
+                border-[color-mix(in_oklch,var(--color-warning),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-warning),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-warning),white_20%)]
+                `,
                 main: `
                 bg-main text-white
                 border-[color-mix(in_oklch,var(--color-main),black_25%)]
@@ -106,5 +113,34 @@ export const ButtonVariants = cva(
             variant: "main",
             size: "md",
         },
+    }
+);
+
+export const BoxVariants = cva(
+    "",
+    {
+        variants: {
+            variant: {
+                "primary":"bg-primary border-[color-mix(in_oklch,var(--color-primary),black_20%)]",
+                "secondary":"bg-secondary border-[color-mix(in_oklch,var(--color-secondary),black_20%)]",
+                "main":"border-[color-mix(in_oklch,var(--color-main),black_20%)] bg-main",
+                "accent":"border-[color-mix(in_oklch,var(--color-accent),black_20%)] bg-accent",
+                "warning":"border-[color-mix(in_oklch,var(--color-warning),black_20%)] bg-warning",
+                "danger":"border-[color-mix(in_oklch,var(--color-danger),black_20%)] bg-danger",
+                "success":"border-[color-mix(in_oklch,var(--color-success),black_20%)] bg-success",
+                "info":"border-[color-mix(in_oklch,var(--color-info),black_20%)] bg-info",
+            },
+            size:paddings,
+            borderWidth:{
+                "border-thin":"border",
+                "border-medium":"border-2",
+                "border-thick":"border-4",
+            }
+        },
+        defaultVariants: {
+            variant: "main",
+            size: "md",
+            borderWidth:"border-thin"
+        }
     }
 );
