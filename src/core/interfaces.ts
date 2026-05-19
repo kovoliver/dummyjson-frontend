@@ -42,7 +42,7 @@ export interface InputProps {
 export interface BoxProps {
     children?: React.ReactNode;
     variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning"|"success"|"info";
-    size?: "sm" | "md" | "lg" | "xl" | "xxl";
+    padding?: "none" | "sm" | "md" | "lg" | "xl" | "xxl";
     borderWidth?:"border-thin"|"border-medium"|"border-thick";
     rounded?: "rounded-none" | "rounded" | "rounded-md" | "rounded-lg" | "rounded-xl" | "rounded-full";
     customClasses?: string[] | null;

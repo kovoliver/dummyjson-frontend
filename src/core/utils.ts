@@ -23,9 +23,5 @@ export const createColorObject = (colors: Record<string, string>, prop: string):
 };
 
 export const apiCatch = (err: any) => {
-    if (!err.response && import.meta.env.DEV) {
-        console.log(err.message);
-    }
-
-    return err.response?.data ?? "Unexpected error happened. Please, try again later!";
+    return err.response?.data?.message ?? "Unexpected error happened. Please, try again later!";
 };

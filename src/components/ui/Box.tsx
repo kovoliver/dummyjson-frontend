@@ -4,12 +4,12 @@ import type { BoxProps } from "../../core/interfaces";
 export default function Box({
     children,
     variant,
-    size,
+    padding,
     borderWidth,
     rounded = "rounded",
     customClasses = []
 }: BoxProps) {
-    let classes = BoxVariants({variant, size, borderWidth});
+    let classes = BoxVariants({variant, padding, borderWidth});
 
     classes += customClasses ? ` ${rounded} ` + customClasses.join(" ") : "";
 

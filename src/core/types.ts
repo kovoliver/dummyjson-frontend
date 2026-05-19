@@ -21,6 +21,13 @@ export type Product = {
     reviews: Review[];
 }
 
+export type ProductResponse = {
+    products:Product[];
+    total:number;
+    skip:number;
+    limit:number;
+}
+
 export type AuthResponse = {
     id: number;
     username: string;

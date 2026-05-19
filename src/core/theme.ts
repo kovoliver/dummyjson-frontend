@@ -15,6 +15,7 @@ export const ThemeColor = {
 export type ThemeColorType = typeof ThemeColor[keyof typeof ThemeColor];
 
 export const paddings = {
+    none:"p-0",
     sm: "p-0.5",
     md: "p-2",
     lg: "p-4",
@@ -126,11 +127,11 @@ export const BoxVariants = cva(
                 "main":"border-[color-mix(in_oklch,var(--color-main),black_20%)] bg-main",
                 "accent":"border-[color-mix(in_oklch,var(--color-accent),black_20%)] bg-accent",
                 "warning":"border-[color-mix(in_oklch,var(--color-warning),black_20%)] bg-warning",
-                "danger":"border-[color-mix(in_oklch,var(--color-danger),black_20%)] bg-danger",
+                "danger":"border-[color-mix(in_oklch,var(--color-danger),black_20%)] text-white bg-danger",
                 "success":"border-[color-mix(in_oklch,var(--color-success),black_20%)] bg-success",
                 "info":"border-[color-mix(in_oklch,var(--color-info),black_20%)] bg-info",
             },
-            size:paddings,
+            padding:paddings,
             borderWidth:{
                 "border-thin":"border",
                 "border-medium":"border-2",
@@ -139,7 +140,7 @@ export const BoxVariants = cva(
         },
         defaultVariants: {
             variant: "main",
-            size: "md",
+            padding: "md",
             borderWidth:"border-thin"
         }
     }

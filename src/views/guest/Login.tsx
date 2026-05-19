@@ -7,6 +7,7 @@ import { apiCatch } from "../../core/utils";
 import { useUser } from "../../components/modules/UserProvider";
 import type { User } from "../../core/types";
 import { useNavigate } from "react-router-dom";
+import { useNotify } from "../../components/modules/NotificationProvider";
 
 export default function Login() {
     const as: AuthService = new AuthService();
@@ -14,6 +15,7 @@ export default function Login() {
     const [password, setPassword] = useState<string>("emilyspass");
     const navigate = useNavigate();
     const userContext = useUser();
+    const notifyContext = useNotify();
 
     async function login(e:any):Promise<void> {
         e.preventDefault();
@@ -39,8 +41,9 @@ export default function Login() {
             );
             
             navigate("/user/profile");
-        } catch (err) {
-            apiCatch(err);
+        } catch (err:any) {
+            notifyContext.setMessage(err);
+            notifyContext.setMessageType("danger");
         }
     };
 
@@ -56,7 +59,7 @@ export default function Login() {
                         placeholder="username"
                         type="text" customClasses={['w-3/4']}
                         onChange={(e)=>setUsername(e.target.value)}
-                        value="emilys"
+                        value={username}
                     />
 
                     <b className="block text-main mb-2">Password</b>
@@ -65,7 +68,7 @@ export default function Login() {
                         placeholder="password"
                         type="password" customClasses={['w-3/4']}
                         onChange={(e)=>setPassword(e.target.value)}
-                        value="emilyspass"
+                        value={password}
                     />
 
                     <ButtonMain
