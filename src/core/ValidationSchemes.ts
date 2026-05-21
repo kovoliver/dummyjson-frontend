@@ -4,9 +4,8 @@ import type { Product } from './types';
 export const productValidationSchema = Joi.object<Product>({
     id: Joi.number()
         .integer()
-        .min(0)
-        .required(),
-
+        .min(0),
+        
     brand: Joi.string()
         .trim()
         .min(1)
