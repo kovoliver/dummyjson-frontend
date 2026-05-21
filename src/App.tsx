@@ -16,8 +16,9 @@ import DashboardLayout from './components/layouts/DashboardLayout';
 import { UserProvider } from './components/modules/UserProvider';
 import Login from './views/guest/Login';
 import NotificationProvider from './components/modules/NotificationProvider';
-import Profile from './views/user/Profile';
-import Products from './views/user/Products';
+import ProfilePage from './views/user/ProfilePage';
+import ProductsPage from './views/user/ProductsPage';
+import ProductPage from './views/user/ProductPage';
 
 library.add(
     faPlus, faTrash, faCheck,
@@ -39,8 +40,9 @@ function App() {
                         </Route>
 
                         <Route element={<DashboardLayout />}>
-                            <Route path="/user/profile" element={<Profile/>}/>
-                            <Route path="/user/products" element={<Products/>}/>
+                            <Route path="/user/profile" element={<ProfilePage/>}/>
+                            <Route path="/user/products" element={<ProductsPage/>}/>
+                            <Route path="/user/product" element={<ProductPage/>}/>
                         </Route>
                     </Routes>
                 </BrowserRouter>

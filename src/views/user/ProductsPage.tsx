@@ -6,7 +6,7 @@ import type { Product, ProductResponse } from "../../core/types";
 
 const ps = new ProductsService();
 
-export default function Products() {
+export default function ProductsPage() {
     const notifyContext = useNotify();
     const [products, setProducts] = useState<Product[]>([]);
     const [limit] = useState(12);

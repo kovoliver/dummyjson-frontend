@@ -1,6 +1,6 @@
 import { useUser } from "../../components/modules/UserProvider";
 
-export default function Profile() {
+export default function ProfilePage() {
     const { user } = useUser();
 
     if(!user) {

@@ -124,12 +124,13 @@ export const BoxVariants = cva(
             variant: {
                 "primary":"bg-primary border-[color-mix(in_oklch,var(--color-primary),black_20%)]",
                 "secondary":"bg-secondary border-[color-mix(in_oklch,var(--color-secondary),black_20%)]",
-                "main":"border-[color-mix(in_oklch,var(--color-main),black_20%)] bg-main",
+                "main":"border-[color-mix(in_oklch,var(--color-main),black_20%)] bg-main text-white",
                 "accent":"border-[color-mix(in_oklch,var(--color-accent),black_20%)] bg-accent",
                 "warning":"border-[color-mix(in_oklch,var(--color-warning),black_20%)] bg-warning",
                 "danger":"border-[color-mix(in_oklch,var(--color-danger),black_20%)] text-white bg-danger",
                 "success":"border-[color-mix(in_oklch,var(--color-success),black_20%)] bg-success",
                 "info":"border-[color-mix(in_oklch,var(--color-info),black_20%)] bg-info",
+                "white":"border-gray-300 bg-white",
             },
             padding:paddings,
             borderWidth:{

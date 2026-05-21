@@ -36,16 +36,37 @@ export interface InputProps {
     variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
-    onClick?: ((...args: any[]) => any) | null;
+    onChange?: ((...args: any[]) => any) | null;
 }
+
+export interface TagInputProps extends Omit<InputProps, "type"|"value"> {
+    tags:string[];
+    setTags?: ((...args: any[]) => any) | null;
+};
 
 export interface BoxProps {
     children?: React.ReactNode;
-    variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning"|"success"|"info";
+    variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning"|"success"|"info"|"white";
     padding?: "none" | "sm" | "md" | "lg" | "xl" | "xxl";
     borderWidth?:"border-thin"|"border-medium"|"border-thick";
     rounded?: "rounded-none" | "rounded" | "rounded-md" | "rounded-lg" | "rounded-xl" | "rounded-full";
     customClasses?: string[] | null;
+}
+
+export interface TagInputProps {
+    boxVariant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning"|"success"|"info"|"white";
+    tagVariant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
+    placeholder:string;
+    tags:string[];
+    addTag:(tag:string)=>any;
+    removeTag:(index:number)=>any;
+}
+
+export interface TagProps {
+    variant:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
+    index:number;
+    value:string;
+    removeTag:(index:number)=>any;
 }
 
 export interface AlertProps extends BoxProps {
