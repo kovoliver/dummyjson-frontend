@@ -46,13 +46,13 @@ export default function ProductPage() {
                 className="grid grid-cols-2 gap-5 text-center"
                 onSubmit={(e) => { e.preventDefault(); addProduct(); }}
             >
-                <BoxSecondary customClasses={['col-span-1', 'flex', 'flex-col', 'gap-4']}>
+                <BoxSecondary customClasses={['lg:col-span-1', 'col-span-2', 'flex', 'flex-col', 'gap-4']}>
                     <h2 className="text-xl font-bold text-main mb-2">Basic Info</h2>
 
                     <div>
                         <b className="block text-main mb-1">Brand</b>
                         <InputMain
-                            type="text" customClasses={['w-75']} placeholder="Product brand"
+                            type="text" customClasses={['w-[90%]']} placeholder="Product brand"
                             value={productData.brand}
                             onChange={(e: any) => setProductData(prev => ({ ...prev, brand: e.target.value }))}
                         />
@@ -61,7 +61,7 @@ export default function ProductPage() {
                     <div>
                         <b className="block text-main mb-1">Product title</b>
                         <InputMain
-                            type="text" customClasses={['w-75']} placeholder="Product title"
+                            type="text" customClasses={['w-[90%]']} placeholder="Product title"
                             value={productData.title}
                             onChange={(e: any) => setProductData(prev => ({ ...prev, title: e.target.value }))}
                         />
@@ -70,7 +70,7 @@ export default function ProductPage() {
                     <div>
                         <b className="block text-main mb-1">Description</b>
                         <InputMain
-                            type="text" customClasses={['w-75']} placeholder="Product description"
+                            type="text" customClasses={['w-[90%]']} placeholder="Product description"
                             value={productData.description}
                             onChange={(e: any) => setProductData(prev => ({ ...prev, description: e.target.value }))}
                         />
@@ -79,20 +79,20 @@ export default function ProductPage() {
                     <div>
                         <b className="block text-main mb-1">Thumbnail URL</b>
                         <InputMain
-                            type="text" customClasses={['w-75']} placeholder="https://example.com/image.jpg"
+                            type="text" customClasses={['w-[90%]']} placeholder="https://example.com/image.jpg"
                             value={productData.thumbnail}
                             onChange={(e: any) => setProductData(prev => ({ ...prev, thumbnail: e.target.value }))}
                         />
                     </div>
                 </BoxSecondary>
 
-                <BoxSecondary customClasses={['col-span-1', 'flex', 'flex-col', 'gap-4']}>
+                <BoxSecondary customClasses={['lg:col-span-1', 'col-span-2', 'flex', 'flex-col', 'gap-4']}>
                     <h2 className="text-xl font-bold text-main mb-2">Inventory & Pricing</h2>
 
                     <div>
                         <b className="block text-main mb-1">Price ($)</b>
                         <InputMain
-                            type="number" customClasses={['w-75']} placeholder="Price"
+                            type="number" customClasses={['w-[90%]']} placeholder="Price"
                             value={productData.price || ""}
                             onChange={(e: any) => setProductData(prev => ({ ...prev, price: Number(e.target.value) }))}
                         />
@@ -101,7 +101,7 @@ export default function ProductPage() {
                     <div>
                         <b className="block text-main mb-1">Discount (%)</b>
                         <InputMain
-                            type="number" customClasses={['w-75']} placeholder="Discount percentage"
+                            type="number" customClasses={['w-[90%]']} placeholder="Discount percentage"
                             value={productData.discountPercentage || ""}
                             onChange={(e: any) => setProductData(prev => ({ ...prev, discountPercentage: Number(e.target.value) }))}
                         />
@@ -110,7 +110,7 @@ export default function ProductPage() {
                     <div>
                         <b className="block text-main mb-1">Stock</b>
                         <InputMain
-                            type="number" customClasses={['w-75']} placeholder="Available stock"
+                            type="number" customClasses={['w-[90%]']} placeholder="Available stock"
                             value={productData.stock || ""}
                             onChange={(e: any) => setProductData(prev => ({ ...prev, stock: Number(e.target.value) }))}
                         />
@@ -126,7 +126,7 @@ export default function ProductPage() {
                             removeTag={(index: number) =>
                                 setProductData(prev => ({ ...prev, tags: prev.tags.filter((_, i) => i !== index) }))
                             }
-                            placeholder="Add a tag"
+                            placeholder="comma or enter"
                         />
                     </div>
                 </BoxSecondary>

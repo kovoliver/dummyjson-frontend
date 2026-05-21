@@ -35,7 +35,7 @@ export default function DashboardLayout() {
 
     return(
         <div className="grid grid-cols-12 max-w-6xl mx-auto gap-4">
-            <nav className="col-span-3">
+            <nav className="lg:col-span-3 sm:col-span-12 col-span-12">
                 <BoxSecondary rounded="rounded-none" padding="none">
                     <ul className="block">
                         <li className={highlightMenu("/user/profile")}>
@@ -51,7 +51,7 @@ export default function DashboardLayout() {
                     </ul>
                 </BoxSecondary>
             </nav>
-            <div className="col-span-9">
+            <div className="lg:col-span-9 sm:col-span-12 col-span-12">
                 <Outlet/>
             </div>
         </div>
