@@ -30,8 +30,8 @@ export interface ButtonProps {
 }
 
 export interface InputProps {
-    type:"text"|"password"|"email"|"date"|"time";
-    value?:string;
+    type:"text"|"password"|"email"|"date"|"time"|"number";
+    value?:string|number;
     placeholder:string;
     variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
     size?: "xs" | "sm" | "md" | "lg" | "xl";

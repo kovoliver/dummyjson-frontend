@@ -30,7 +30,7 @@ export default function TagInput({boxVariant = "white", tagVariant = "main", tag
                 }
             </div>
             <input type="text" placeholder={placeholder} 
-            className="bg-white outline-none rounded-sm p-1" onKeyDown={createTag}/>
+            className="bg-white outline-none rounded-sm p-1 max-w-25" onKeyDown={createTag}/>
         </Box>
     );
 };
