@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function ProductPage() {
     const ps = new ProductsService();
     const navigate = useNavigate();
-    const [productData, setProductData] = useState<Product>({
+    const [productData, setProductData] = useState<Omit<Product, "reviews">>({
         id: 0,
         brand: "",
         title: "",
@@ -21,8 +21,7 @@ export default function ProductPage() {
         stock: 0,
         tags: [],
         images: [],
-        thumbnail: "",
-        reviews: []
+        thumbnail: ""
     });
     const notifyContext = useNotify();
 
@@ -47,7 +46,6 @@ export default function ProductPage() {
                 className="grid grid-cols-2 gap-5 text-center"
                 onSubmit={(e) => { e.preventDefault(); addProduct(); }}
             >
-                {/* BAL OLDALI DOBOZ: Alapadatok */}
                 <BoxSecondary customClasses={['col-span-1', 'flex', 'flex-col', 'gap-4']}>
                     <h2 className="text-xl font-bold text-main mb-2">Basic Info</h2>
 
@@ -88,7 +86,6 @@ export default function ProductPage() {
                     </div>
                 </BoxSecondary>
 
-                {/* JOBB OLDALI DOBOZ: Számok és Címkék */}
                 <BoxSecondary customClasses={['col-span-1', 'flex', 'flex-col', 'gap-4']}>
                     <h2 className="text-xl font-bold text-main mb-2">Inventory & Pricing</h2>
 
@@ -134,7 +131,6 @@ export default function ProductPage() {
                     </div>
                 </BoxSecondary>
 
-                {/* MENTÉS GOMB: Alul, középen, teljes szélességű konténerben */}
                 <div className="col-span-2 mt-4 text-center">
                     <button
                         type="submit"

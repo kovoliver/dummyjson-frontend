@@ -5,7 +5,7 @@ export const productValidationSchema = Joi.object<Product>({
     id: Joi.number()
         .integer()
         .min(0),
-        
+
     brand: Joi.string()
         .trim()
         .min(1)
@@ -66,8 +66,5 @@ export const productValidationSchema = Joi.object<Product>({
         .required()
         .messages({
             'string.uri': 'A borítóképnek érvényes URL-nek kell lennie.',
-        }),
-    reviews: Joi.array()
-        .items(Joi.object())
-        .required()
+        })
 });
