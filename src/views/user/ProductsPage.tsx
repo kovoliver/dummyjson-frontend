@@ -4,7 +4,7 @@ import { useNotify } from "../../components/modules/NotificationProvider";
 import ProductsService from "../../app/ProductsService";
 import type { Product, ProductResponse } from "../../core/types";
 import { Link } from "react-router-dom";
-import { ButtonMain, ButtonPrimary } from "../../components/ui/Buttons";
+import { ButtonMain } from "../../components/ui/Buttons";
 
 const ps = new ProductsService();
 
