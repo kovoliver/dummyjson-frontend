@@ -87,3 +87,25 @@ export const handleChange = <
         setErrors(prev => ({ ...prev, [name]: error }));
     }
 };
+
+export function normalizeMessages(msg: string | string[] | Record<string, any> | null | undefined): string[] {
+    if (!msg) return [];
+
+    const normalizeOne = (m: string | string[] | Record<string, any>): string[] => {
+        if (!m) return [];
+
+        if (typeof m === "string") {
+            return m.trim() ? [m] : [];
+        }
+
+        if (Array.isArray(m)) {
+            return m.flatMap(normalizeOne);
+        }
+
+        return Object.entries(m)
+            .filter(([, v]) => v !== null && v !== undefined && v !== "")
+            .map(([_, v]) => v);
+    };
+
+    return normalizeOne(msg);
+}

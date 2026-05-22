@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { BoxSecondary } from "../ui/Boxes";
 import { useUser } from "../modules/UserProvider";
 import { ButtonWarning } from "../ui/Buttons";
+import GlobalNotifications from "../modules/GlobalNotifications";
 
 export default function DashboardLayout() {
     const location = useLocation();
@@ -52,6 +53,7 @@ export default function DashboardLayout() {
                 </BoxSecondary>
             </nav>
             <div className="lg:col-span-9 sm:col-span-12 col-span-12">
+                <GlobalNotifications/>
                 <Outlet/>
             </div>
         </div>
