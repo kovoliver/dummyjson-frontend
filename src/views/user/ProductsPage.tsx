@@ -3,6 +3,8 @@ import { BoxAccent, BoxSecondary } from "../../components/ui/Boxes";
 import { useNotify } from "../../components/modules/NotificationProvider";
 import ProductsService from "../../app/ProductsService";
 import type { Product, ProductResponse } from "../../core/types";
+import { Link } from "react-router-dom";
+import { ButtonMain, ButtonPrimary } from "../../components/ui/Buttons";
 
 const ps = new ProductsService();
 
@@ -55,9 +57,16 @@ export default function ProductsPage() {
 
     return (
         <BoxSecondary rounded="rounded-none">
+            <Link to="/user/product">
+                <ButtonMain
+                    text="Add product"
+                    customClasses={["mx-auto my-2 block"]}
+                />
+            </Link>
+            
             <div className="grid grid-cols-12">
                 {products.map((p, index) => (
-                    <div key={index} className="p-2 col-span-4 text-center">
+                    <div key={index} className="p-2 lg:col-span-4 md:col-span-6 sm:col-span-12 col-span-12 text-center">
                         <BoxAccent>
                             <b className="block font-bold">{p.title}</b>
                             <img className="py-3 mx-auto" src={p.thumbnail} alt={p.title} />

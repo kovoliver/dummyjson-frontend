@@ -6,12 +6,14 @@ import { BoxSecondary } from "../../components/ui/Boxes";
 import TagInput from "../../components/ui/TagInput";
 import ProductsService from "../../app/ProductsService";
 import { useNavigate } from "react-router-dom";
+import { ButtonMain } from "../../components/ui/Buttons";
+import { handleChange, validateForm } from "../../core/utils";
+import { productValidationSchema } from "../../core/ValidationSchemes";
 
 export default function ProductPage() {
     const ps = new ProductsService();
     const navigate = useNavigate();
-    const [productData, setProductData] = useState<Omit<Product, "reviews">>({
-        id: 0,
+    const [productData, setProductData] = useState<Omit<Product, "reviews"|"thumbnail"|"images"|"id">>({
         brand: "",
         title: "",
         description: "",
@@ -19,14 +21,29 @@ export default function ProductPage() {
         discountPercentage: 0,
         rating: 0,
         stock: 0,
-        tags: [],
-        images: [],
-        thumbnail: ""
+        tags: []
     });
+    const [errors, setErrors] = useState<Record<string,any>>({
+        brand: "",
+        title: "",
+        description: "",
+        price: "",
+        discountPercentage: "",
+        rating: "",
+        stock: "",
+        tags: ""
+    });
+    
     const notifyContext = useNotify();
 
     const addProduct = async () => {
         try {
+            const errs = validateForm(productData, productValidationSchema);
+
+            if(!errs.passed) {
+                throw errs.errors;
+            }
+
             const product = await ps.addProduct(productData);
 
             notifyContext.setMessage("You have successfully added your product!");
@@ -35,6 +52,7 @@ export default function ProductPage() {
         } catch (err: any) {
             notifyContext.setMessage(err);
             notifyContext.setMessageType("danger");
+            notifyContext.setIsVisible(true);
         }
     };
 
@@ -51,37 +69,34 @@ export default function ProductPage() {
 
                     <div>
                         <b className="block text-main mb-1">Brand</b>
+                        <b className="block text-danger">{errors.brand||""}</b>
+
                         <InputMain
                             type="text" customClasses={['w-[90%]']} placeholder="Product brand"
-                            value={productData.brand}
-                            onChange={(e: any) => setProductData(prev => ({ ...prev, brand: e.target.value }))}
+                            value={productData.brand} name="brand"
+                            onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
 
                     <div>
                         <b className="block text-main mb-1">Product title</b>
+                        <b className="block text-danger">{errors.title||""}</b>
+
                         <InputMain
                             type="text" customClasses={['w-[90%]']} placeholder="Product title"
-                            value={productData.title}
-                            onChange={(e: any) => setProductData(prev => ({ ...prev, title: e.target.value }))}
+                            value={productData.title} name="title"
+                            onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
 
                     <div>
                         <b className="block text-main mb-1">Description</b>
+                        <b className="block text-danger">{errors.description||""}</b>
+
                         <InputMain
                             type="text" customClasses={['w-[90%]']} placeholder="Product description"
-                            value={productData.description}
-                            onChange={(e: any) => setProductData(prev => ({ ...prev, description: e.target.value }))}
-                        />
-                    </div>
-
-                    <div>
-                        <b className="block text-main mb-1">Thumbnail URL</b>
-                        <InputMain
-                            type="text" customClasses={['w-[90%]']} placeholder="https://example.com/image.jpg"
-                            value={productData.thumbnail}
-                            onChange={(e: any) => setProductData(prev => ({ ...prev, thumbnail: e.target.value }))}
+                            value={productData.description} name="description"
+                            onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
                 </BoxSecondary>
@@ -91,33 +106,41 @@ export default function ProductPage() {
 
                     <div>
                         <b className="block text-main mb-1">Price ($)</b>
+                        <b className="block text-danger">{errors.price||""}</b>
+
                         <InputMain
                             type="number" customClasses={['w-[90%]']} placeholder="Price"
-                            value={productData.price || ""}
-                            onChange={(e: any) => setProductData(prev => ({ ...prev, price: Number(e.target.value) }))}
+                            value={productData.price || ""} name="price"
+                            onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
 
                     <div>
                         <b className="block text-main mb-1">Discount (%)</b>
+                        <b className="block text-danger">{errors.discountPercentage||""}</b>
+
                         <InputMain
                             type="number" customClasses={['w-[90%]']} placeholder="Discount percentage"
-                            value={productData.discountPercentage || ""}
-                            onChange={(e: any) => setProductData(prev => ({ ...prev, discountPercentage: Number(e.target.value) }))}
+                            value={productData.discountPercentage || ""} name="discountPercentage"
+                            onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
 
                     <div>
                         <b className="block text-main mb-1">Stock</b>
+                        <b className="block text-danger">{errors.stock||""}</b>
+
                         <InputMain
                             type="number" customClasses={['w-[90%]']} placeholder="Available stock"
-                            value={productData.stock || ""}
-                            onChange={(e: any) => setProductData(prev => ({ ...prev, stock: Number(e.target.value) }))}
+                            value={productData.stock || ""} name="stock"
+                            onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
 
                     <div>
                         <b className="block text-main mb-1">Tags</b>
+                        <b className="block text-danger">{errors.tags||""}</b>
+
                         <TagInput
                             tags={productData?.tags}
                             addTag={(tag: string) =>
@@ -132,12 +155,10 @@ export default function ProductPage() {
                 </BoxSecondary>
 
                 <div className="col-span-2 mt-4 text-center">
-                    <button
-                        type="submit"
-                        className="bg-main text-white px-8 py-3 rounded shadow font-semibold hover:opacity-90 transition-opacity"
-                    >
-                        Save Product
-                    </button>
+                    <ButtonMain
+                        text="Save"
+                        icon="save"
+                    />
                 </div>
             </form>
         </>

@@ -46,3 +46,5 @@ export type UserLogin = {
     username: string;
     password: string;
 };
+
+export type FormErrors<T> = { [K in keyof T]?: string | null };

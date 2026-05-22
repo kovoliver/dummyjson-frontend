@@ -12,11 +12,11 @@ export interface UserContextType {
 }
 
 export interface NotificationContexType {
-    message:string|string[]|null;
+    message:string|string[]|Record<string,any>|null;
     messageType:"success"|"warning"|"danger"|"info";
     isVisible:boolean;
     setIsVisible:(isVisible:boolean)=>void;
-    setMessage:(msg:string)=>void;
+    setMessage:(msg:string|Record<string,any>|string[])=>void;
     setMessageType:(msgType:"success"|"warning"|"danger"|"info")=>void;
 };
 
@@ -30,6 +30,8 @@ export interface ButtonProps {
 }
 
 export interface InputProps {
+    name?:string;
+    id?:string;
     type:"text"|"password"|"email"|"date"|"time"|"number";
     value?:string|number;
     placeholder:string;

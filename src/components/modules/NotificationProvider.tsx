@@ -4,7 +4,7 @@ import type { NotificationContexType } from "../../core/interfaces";
 export const NotifyContext = createContext<NotificationContexType|null>(null);
 
 export default function NotificationProvider({ children }: { children: ReactNode }) {
-    const [message, setMessage] = useState<string|string[]|null>(null);
+    const [message, setMessage] = useState<string|string[]|Record<string,any>|null>(null);
     const [messageType, setMessageType] = useState<"success"|"warning"|"danger"|"info">("success");
     const [isVisible, setIsVisible] = useState(false);
 

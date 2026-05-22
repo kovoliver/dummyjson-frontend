@@ -12,7 +12,7 @@ export default class ProductsService {
         }
     }
 
-    public async addProduct(productData: Omit<Product, 'id'|'reviews'>): Promise<Product> {
+    public async addProduct(productData: Omit<Product, "reviews"|"id"|"tags"|"images"|"thumbnail">): Promise<Product> {
         try {
             const response = await api.post("/products/add", productData);
             return response.data;
