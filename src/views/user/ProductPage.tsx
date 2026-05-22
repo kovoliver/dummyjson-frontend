@@ -1,35 +1,35 @@
-import { useState } from "react";
-import type { Product } from "../../core/types";
+import { useEffect, useMemo, useState } from "react";
+import type { ProductFormData } from "../../core/types";
 import { useNotify } from "../../components/modules/NotificationProvider";
 import { InputMain } from "../../components/ui/Inputs";
 import { BoxSecondary } from "../../components/ui/Boxes";
 import TagInput from "../../components/ui/TagInput";
 import ProductsService from "../../app/ProductsService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ButtonMain } from "../../components/ui/Buttons";
 import { handleChange, validateForm } from "../../core/utils";
 import { productValidationSchema } from "../../core/ValidationSchemes";
 
 export default function ProductPage() {
-    const ps = new ProductsService();
+    const ps = useMemo(()=>new ProductsService(), []);
     const navigate = useNavigate();
-    const [productData, setProductData] = useState<Omit<Product, "reviews"|"thumbnail"|"images"|"id">>({
+    const {id} = useParams();
+    
+    const [productData, setProductData] = useState<ProductFormData>({
         brand: "",
         title: "",
         description: "",
         price: 0,
         discountPercentage: 0,
-        rating: 0,
         stock: 0,
         tags: []
     });
-    const [errors, setErrors] = useState<Record<string,any>>({
+    const [errors, setErrors] = useState<Record<keyof ProductFormData,any>>({
         brand: "",
         title: "",
         description: "",
         price: "",
         discountPercentage: "",
-        rating: "",
         stock: "",
         tags: ""
     });
@@ -39,22 +39,42 @@ export default function ProductPage() {
     const addProduct = async () => {
         try {
             const errs = validateForm(productData, productValidationSchema);
+            const isUpdate = id ? true : false;
 
             if(!errs.passed) {
                 throw errs.errors;
             }
 
-            const product = await ps.addProduct(productData);
+            const product = !isUpdate ? await ps.addProduct(productData) 
+            : await ps.updateProduct(parseInt(id as string), productData);
 
             notifyContext.setMessage("You have successfully added your product!");
             notifyContext.setMessageType("success");
-            navigate(`/product/${product.id}`);
+            
+            if(!isUpdate) navigate(`/product/${product.id}`);
         } catch (err: any) {
             notifyContext.setMessage(err);
             notifyContext.setMessageType("danger");
             notifyContext.setIsVisible(true);
         }
     };
+
+    const getProduct = async ()=> {
+        if(!id) return;
+
+        try {
+            const response = await ps.getProduct(parseInt(id as string));
+            setProductData(response);
+        } catch (err: any) {
+            notifyContext.setMessage(err);
+            notifyContext.setMessageType("danger");
+            notifyContext.setIsVisible(true);
+        }
+    };
+
+    useEffect(()=> {
+        getProduct();
+    }, []);
 
     return (
         <>
@@ -94,7 +114,7 @@ export default function ProductPage() {
                         <b className="block text-danger">{errors.description||""}</b>
 
                         <InputMain
-                            type="text" customClasses={['w-[90%]']} placeholder="Product description"
+                            type="textarea" customClasses={['w-[90%] min-h-[130px]']} placeholder="Product description"
                             value={productData.description} name="description"
                             onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
@@ -110,7 +130,7 @@ export default function ProductPage() {
 
                         <InputMain
                             type="number" customClasses={['w-[90%]']} placeholder="Price"
-                            value={productData.price || ""} name="price"
+                            value={productData.price} name="price"
                             onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
@@ -121,7 +141,7 @@ export default function ProductPage() {
 
                         <InputMain
                             type="number" customClasses={['w-[90%]']} placeholder="Discount percentage"
-                            value={productData.discountPercentage || ""} name="discountPercentage"
+                            value={productData.discountPercentage} name="discountPercentage"
                             onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>
@@ -132,7 +152,7 @@ export default function ProductPage() {
 
                         <InputMain
                             type="number" customClasses={['w-[90%]']} placeholder="Available stock"
-                            value={productData.stock || ""} name="stock"
+                            value={productData.stock} name="stock"
                             onChange={(e:any)=>handleChange(e, setProductData, setErrors, productValidationSchema)}
                         />
                     </div>

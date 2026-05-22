@@ -1,5 +1,5 @@
 import api from "../core/api";
-import type { ProductResponse, Product } from "../core/types";
+import type { ProductResponse, Product, ProductFormData } from "../core/types";
 import { apiCatch } from "../core/utils";
 
 export default class ProductsService {
@@ -12,7 +12,16 @@ export default class ProductsService {
         }
     }
 
-    public async addProduct(productData: Omit<Product, "reviews"|"id"|"tags"|"images"|"thumbnail">): Promise<Product> {
+    public async getProduct(id:number): Promise<Product> {
+        try {
+            const response = await api.get(`/products/${id}`);
+            return response.data;
+        } catch(err) {
+            return apiCatch(err);
+        }
+    }
+
+    public async addProduct(productData: ProductFormData): Promise<Product> {
         try {
             const response = await api.post("/products/add", productData);
             return response.data;

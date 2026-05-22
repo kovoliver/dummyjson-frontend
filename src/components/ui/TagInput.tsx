@@ -60,9 +60,11 @@ export default function TagInput({ boxVariant = "white", tagVariant = "main", ta
                         />
                     )
                 }
-            </div>
-            <input type="text" placeholder={placeholder} onChange={handleChange} onInput={handleInput}
+
+                <input type="text" placeholder={placeholder} onChange={handleChange} onInput={handleInput}
                 className="bg-white outline-none rounded-sm p-1 max-w-25 text-xs" onKeyDown={createTag} />
+            </div>
+            
         </Box>
     );
 };

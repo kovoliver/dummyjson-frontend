@@ -8,7 +8,9 @@ import {
     faRightToBracket,
     faSignIn,
     faCaretRight,
-    faCaretLeft
+    faCaretLeft,
+    faUpRightFromSquare,
+    faArrowUpRightFromSquare
 } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GuestLayout from './components/layouts/GuestLayout';
@@ -26,7 +28,8 @@ library.add(
     faEllipsisVertical, faGear, faUser,
     faMagnifyingGlass, faFloppyDisk, faCircleXmark,
     faRightToBracket, faSignIn, faCaretRight,
-    faCaretLeft
+    faCaretLeft, faUpRightFromSquare,
+    faArrowUpRightFromSquare
 );
 
 function App() {
@@ -43,6 +46,7 @@ function App() {
                             <Route path="/user/profile" element={<ProfilePage/>}/>
                             <Route path="/user/products" element={<ProductsPage/>}/>
                             <Route path="/user/product" element={<ProductPage/>}/>
+                            <Route path="/user/product/:id" element={<ProductPage/>}/>
                         </Route>
                     </Routes>
                 </BrowserRouter>

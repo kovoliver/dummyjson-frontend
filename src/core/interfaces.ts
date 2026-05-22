@@ -32,7 +32,7 @@ export interface ButtonProps {
 export interface InputProps {
     name?:string;
     id?:string;
-    type:"text"|"password"|"email"|"date"|"time"|"number";
+    type:"text"|"password"|"email"|"date"|"time"|"number"|"textarea";
     value?:string|number;
     placeholder:string;
     variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";

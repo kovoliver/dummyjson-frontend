@@ -21,6 +21,8 @@ export type Product = {
     reviews: Review[];
 }
 
+export type ProductFormData = Omit<Product, "id"|"images"|"thumbnail"|"reviews"|"images"|"rating">;
+
 export type ProductResponse = {
     products:Product[];
     total:number;

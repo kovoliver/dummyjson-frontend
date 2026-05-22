@@ -70,6 +70,14 @@ export default function ProductsPage() {
                         <BoxAccent>
                             <b className="block font-bold">{p.title}</b>
                             <img className="py-3 mx-auto" src={p.thumbnail} alt={p.title} />
+
+                            <Link to={`/user/product/${p.id}`}>
+                                <ButtonMain
+                                    text="Megnyitás"
+                                    icon="arrow-up-right-from-square"
+                                    size="sm"
+                                />
+                            </Link>
                         </BoxAccent>
                     </div>
                 ))}
