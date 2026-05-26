@@ -7,9 +7,8 @@ export const ThemeColor = {
     Warning: "warning",
     Main: "main",
     Accent: "accent",
-    White: "white",
-    Black: "black",
-    Gray: "gray",
+    Info:"info",
+    Success:"success"
 } as const;
 
 export type ThemeColorType = typeof ThemeColor[keyof typeof ThemeColor];
@@ -56,6 +55,8 @@ export const InputVariants = cva(
                 warning: "border-warning text-black focus:ring-1 focus:ring-warning",
                 main: "border-main text-black focus:ring-1 focus:ring-main",
                 accent: "border-accent text-black focus:ring-1 focus:ring-accent",
+                info: "border-info text-black focus:ring-1 focus:ring-info",
+                success: "border-success text-black focus:ring-1 focus:ring-success",
             },
             size: inputSizes
         },
@@ -106,6 +107,18 @@ export const ButtonVariants = cva(
                 border-[color-mix(in_oklch,var(--color-accent),black_25%)]
                 hover:bg-[color-mix(in_oklch,var(--color-accent),white_10%)]
                 active:bg-[color-mix(in_oklch,var(--color-accent),white_20%)]
+                `,
+                info: `
+                bg-info text-black
+                border-[color-mix(in_oklch,var(--color-info),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-info),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-info),white_20%)]
+                `,
+                success: `
+                bg-success text-black
+                border-[color-mix(in_oklch,var(--color-success),black_25%)]
+                hover:bg-[color-mix(in_oklch,var(--color-success),white_10%)]
+                active:bg-[color-mix(in_oklch,var(--color-success),white_20%)]
                 `,
             },
             size: inputSizes,

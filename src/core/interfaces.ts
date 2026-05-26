@@ -1,5 +1,6 @@
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import type { User } from "./types";
+import type { ThemeColorType } from "./theme";
 
 export interface UserContextType {
     user: User | null;
@@ -14,11 +15,11 @@ export interface UserContextType {
 export interface ConfirmationOptions {
     title?: string;
     message: string | string[] | Record<string, any>;
-    messageType: "success" | "warning" | "danger" | "info";
+    messageType: ThemeColorType;
     confirmText?: string;
     cancelText?: string;
-    confirmVariant?: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
-    cancelVariant?: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
+    confirmVariant?: ThemeColorType;
+    cancelVariant?: ThemeColorType;
     confirmIcon: IconProp|undefined;
     cancelIcon: IconProp|undefined;
     onConfirm: () => void | null;
@@ -28,12 +29,12 @@ export interface ConfirmationOptions {
 export interface ConfirmationContextType {
     title: string | undefined;
     message: string | string[] | Record<string, any> | null;
-    messageType: "success" | "warning" | "danger" | "info";
+    messageType: ThemeColorType;
     isVisible: boolean;
     confirmText: string;
     cancelText: string;
-    confirmVariant: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
-    cancelVariant: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
+    confirmVariant: ThemeColorType;
+    cancelVariant: ThemeColorType;
     confirmIcon: IconProp|undefined;
     cancelIcon: IconProp|undefined;
     askConfirmation: (options: ConfirmationOptions) => void;
@@ -43,7 +44,7 @@ export interface ConfirmationContextType {
 
 export interface ButtonProps {
     text:string;
-    variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
+    variant?:ThemeColorType;
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
     icon?:IconProp|null;
@@ -56,10 +57,14 @@ export interface InputProps {
     type:"text"|"password"|"email"|"date"|"time"|"number"|"textarea";
     value?:string|number;
     placeholder:string;
-    variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
+    variant?:ThemeColorType|undefined|null;
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
     onChange?: ((...args: any[]) => any) | null;
+}
+
+export interface SelectProps extends Omit<InputProps, "type"|"placeholder"> {
+    options:string[]|number[]|{id:number|string, value:string}[];
 }
 
 export interface TagInputProps extends Omit<InputProps, "type"|"value"> {
@@ -69,7 +74,7 @@ export interface TagInputProps extends Omit<InputProps, "type"|"value"> {
 
 export interface BoxProps {
     children?: React.ReactNode;
-    variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning"|"success"|"info"|"white";
+    variant?:ThemeColorType;
     padding?: "none" | "sm" | "md" | "lg" | "xl" | "xxl";
     borderWidth?:"border-thin"|"border-medium"|"border-thick";
     rounded?: "rounded-none" | "rounded" | "rounded-md" | "rounded-lg" | "rounded-xl" | "rounded-full";
@@ -77,8 +82,8 @@ export interface BoxProps {
 }
 
 export interface TagInputProps {
-    boxVariant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning"|"success"|"info"|"white";
-    tagVariant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
+    boxVariant?:ThemeColorType;
+    tagVariant?:ThemeColorType;
     placeholder:string;
     tags:string[];
     addTag:(tag:string)=>any;
@@ -86,7 +91,7 @@ export interface TagInputProps {
 }
 
 export interface TagProps {
-    variant:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";
+    variant:ThemeColorType;
     index:number;
     value:string;
     removeTag:(index:number)=>any;

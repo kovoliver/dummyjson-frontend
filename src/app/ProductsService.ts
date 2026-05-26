@@ -3,9 +3,9 @@ import type { ProductResponse, Product, ProductFormData } from "../core/types";
 import { apiCatch } from "../core/utils";
 
 export default class ProductsService {
-    public async getProducts(limit:number = 12, skip:number = 0): Promise<ProductResponse> {
+    public async getProducts(limit:number = 12, skip:number = 0, keyword:string = ""): Promise<ProductResponse> {
         try {
-            const response = await api.get(`/products?limit=${limit}&skip=${skip}`);
+            const response = await api.get(`/products/search?limit=${limit}&skip=${skip}&q=${keyword}`);
             return response.data;
         } catch(err) {
             return apiCatch(err);
