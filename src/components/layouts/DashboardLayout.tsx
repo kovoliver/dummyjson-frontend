@@ -3,6 +3,7 @@ import { BoxSecondary } from "../ui/Boxes";
 import { useUser } from "../modules/UserProvider";
 import { ButtonWarning } from "../ui/Buttons";
 import GlobalNotifications from "../modules/GlobalNotifications";
+import GlobalConfirmation from "../modules/GlobalConfirmations";
 
 export default function DashboardLayout() {
     const location = useLocation();
@@ -54,6 +55,7 @@ export default function DashboardLayout() {
             </nav>
             <div className="lg:col-span-9 sm:col-span-12 col-span-12">
                 <GlobalNotifications/>
+                <GlobalConfirmation/>
                 <Outlet/>
             </div>
         </div>

@@ -1,6 +1,5 @@
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import type { User } from "./types";
-import type { SetStateAction } from "react";
 
 export interface UserContextType {
     user: User | null;
@@ -12,21 +11,34 @@ export interface UserContextType {
     setLoading: (loading: boolean) => void;
 }
 
-export interface NotificationContexType {
-    message:string|string[]|Record<string,any>|null;
-    messageType:"success"|"warning"|"danger"|"info";
-    isVisible:boolean;
-    setIsVisible:(isVisible:boolean)=>void;
-    setMessage:(msg:string|Record<string,any>|string[])=>void;
-    setMessageType:(msgType:"success"|"warning"|"danger"|"info")=>void;
-};
-
 export interface ConfirmationOptions {
     title?: string;
     message: string | string[] | Record<string, any>;
     messageType: "success" | "warning" | "danger" | "info";
+    confirmText?: string;
+    cancelText?: string;
+    confirmVariant?: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
+    cancelVariant?: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
+    confirmIcon: IconProp|undefined;
+    cancelIcon: IconProp|undefined;
     onConfirm: () => void | null;
     onCancel?: () => void | null;
+}
+
+export interface ConfirmationContextType {
+    title: string | undefined;
+    message: string | string[] | Record<string, any> | null;
+    messageType: "success" | "warning" | "danger" | "info";
+    isVisible: boolean;
+    confirmText: string;
+    cancelText: string;
+    confirmVariant: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
+    cancelVariant: "primary" | "secondary" | "danger" | "warning" | "main" | "accent";
+    confirmIcon: IconProp|undefined;
+    cancelIcon: IconProp|undefined;
+    askConfirmation: (options: ConfirmationOptions) => void;
+    handleConfirm: () => void;
+    handleCancel: () => void;
 }
 
 export interface ConfirmationContextType {
