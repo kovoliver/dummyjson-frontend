@@ -1,5 +1,6 @@
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import type { User } from "./types";
+import type { SetStateAction } from "react";
 
 export interface UserContextType {
     user: User | null;
@@ -19,6 +20,24 @@ export interface NotificationContexType {
     setMessage:(msg:string|Record<string,any>|string[])=>void;
     setMessageType:(msgType:"success"|"warning"|"danger"|"info")=>void;
 };
+
+export interface ConfirmationOptions {
+    title?: string;
+    message: string | string[] | Record<string, any>;
+    messageType: "success" | "warning" | "danger" | "info";
+    onConfirm: () => void | null;
+    onCancel?: () => void | null;
+}
+
+export interface ConfirmationContextType {
+    title: string | undefined;
+    message: string | string[] | Record<string, any> | null;
+    messageType: "success" | "warning" | "danger" | "info";
+    isVisible:boolean;
+    askConfirmation: (options: ConfirmationOptions) => void;
+    handleConfirm: () => void;
+    handleCancel: () => void;
+}
 
 export interface ButtonProps {
     text:string;
@@ -75,6 +94,15 @@ export interface AlertProps extends BoxProps {
     onClose?: () => void;
     isVisible:boolean;
     setIsVisible:(isVisible:boolean)=>void;
+}
+
+export interface MessageBoxProps extends BoxProps {
+    isVisible: boolean;
+    setIsVisible: (isVisible: boolean) => void;
+    message: string | string[] | Record<string, any> | null | undefined;
+    setMessage: (message: any) => void;
+    title?: string;
+    maxWidth?: string;
 }
 
 export type SimpleButtonProps = Pick<ButtonProps, "text" | "size" | "customClasses" | "icon" | "onClick">;

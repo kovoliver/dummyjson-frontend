@@ -48,7 +48,7 @@ export default function ProductPage() {
             const product = !isUpdate ? await ps.addProduct(productData) 
             : await ps.updateProduct(parseInt(id as string), productData);
 
-            notifyContext.setMessage("You have successfully added your product!");
+            notifyContext.setMessage(`You have successfully ${isUpdate ? 'updated' : 'added'} your product!`);
             notifyContext.setMessageType("success");
             
             if(!isUpdate) navigate(`/product/${product.id}`);

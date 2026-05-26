@@ -4,7 +4,7 @@ import { useNotify } from "../../components/modules/NotificationProvider";
 import ProductsService from "../../app/ProductsService";
 import type { Product, ProductResponse } from "../../core/types";
 import { Link } from "react-router-dom";
-import { ButtonMain } from "../../components/ui/Buttons";
+import { ButtonDanger, ButtonMain } from "../../components/ui/Buttons";
 
 const ps = new ProductsService();
 
@@ -35,6 +35,20 @@ export default function ProductsPage() {
             setLoading(false);
         }
     }, [limit, loading, hasMore, notifyContext]);
+
+    const deleteProduct = async (id:number)=> {
+        try {
+            const response = await ps.deleteProduct(id);
+
+            const msg = response.isDeleted ? "You have successfully deleted the product." 
+            : "Something went wrong. Please, try againt later!";
+            notifyContext.setMessage(msg);
+            notifyContext.setMessage(response.isDeleted ? "success" : "warning");
+        } catch(err:any) {
+            notifyContext.setMessage(err);
+            notifyContext.setMessageType("danger");
+        }
+    };
 
     useEffect(() => {
         getProducts(skip);
@@ -71,13 +85,24 @@ export default function ProductsPage() {
                             <b className="block font-bold">{p.title}</b>
                             <img className="py-3 mx-auto" src={p.thumbnail} alt={p.title} />
 
-                            <Link to={`/user/product/${p.id}`}>
-                                <ButtonMain
-                                    text="Megnyitás"
-                                    icon="arrow-up-right-from-square"
-                                    size="sm"
-                                />
-                            </Link>
+                            <div className="grid grid-cols-2">
+                                <div className="col-span-1 flex justify-center">
+                                    <Link to={`/user/product/${p.id}`}>
+                                        <ButtonMain
+                                            text="Open"
+                                            icon="arrow-up-right-from-square"
+                                            size="sm"
+                                        />
+                                    </Link>
+                                </div>
+                                <div className="col-span-1 flex justify-center">
+                                    <ButtonDanger
+                                        text="Delete"
+                                        icon="trash"
+                                        size="sm"
+                                    />
+                                </div>
+                            </div>
                         </BoxAccent>
                     </div>
                 ))}

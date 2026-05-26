@@ -12,10 +12,19 @@ export default class ProductsService {
         }
     }
 
-    public async getProduct(id:number): Promise<Product> {
+    public async getProduct(id:number): Promise<ProductFormData> {
         try {
             const response = await api.get(`/products/${id}`);
-            return response.data;
+            
+            return {
+                brand: response.data.brand,
+                title: response.data.title,
+                description: response.data.description,
+                price: response.data.price,
+                discountPercentage: response.data.discountPercentage,
+                stock: response.data.stock,
+                tags: response.data.tags
+            };
         } catch(err) {
             return apiCatch(err);
         }
