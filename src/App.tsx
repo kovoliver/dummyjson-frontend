@@ -21,6 +21,7 @@ import NotificationProvider from './components/modules/NotificationProvider';
 import ProfilePage from './views/user/ProfilePage';
 import ProductsPage from './views/user/ProductsPage';
 import ProductPage from './views/user/ProductPage';
+import ConfirmationProvider from './components/modules/ConfirmationProvider';
 
 library.add(
     faPlus, faTrash, faCheck,
@@ -35,22 +36,24 @@ library.add(
 function App() {
     return (
         <NotificationProvider>
-            <UserProvider>
-                <BrowserRouter>
-                    <Routes>
-                        <Route element={<GuestLayout />}>
-                            <Route path="/" element={<Login/>}/>
-                        </Route>
+            <ConfirmationProvider>
+                <UserProvider>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route element={<GuestLayout />}>
+                                <Route path="/" element={<Login/>}/>
+                            </Route>
 
-                        <Route element={<DashboardLayout />}>
-                            <Route path="/user/profile" element={<ProfilePage/>}/>
-                            <Route path="/user/products" element={<ProductsPage/>}/>
-                            <Route path="/user/product" element={<ProductPage/>}/>
-                            <Route path="/user/product/:id" element={<ProductPage/>}/>
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
-            </UserProvider>
+                            <Route element={<DashboardLayout />}>
+                                <Route path="/user/profile" element={<ProfilePage/>}/>
+                                <Route path="/user/products" element={<ProductsPage/>}/>
+                                <Route path="/user/product" element={<ProductPage/>}/>
+                                <Route path="/user/product/:id" element={<ProductPage/>}/>
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </UserProvider>
+            </ConfirmationProvider>
         </NotificationProvider>
     )
 }

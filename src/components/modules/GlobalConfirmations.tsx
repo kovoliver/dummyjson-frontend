@@ -1,6 +1,7 @@
 import MessageBox from "../ui/MessageBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useConfirm } from "./ConfirmationProvider";
+import Button from "../ui/Button";
 
 export default function GlobalConfirmation() {
     const { 
@@ -30,23 +31,21 @@ export default function GlobalConfirmation() {
             variant={messageType}
         >
             <div className="flex justify-end gap-3 mt-6">
-                <button
+                <Button
+                    text={cancelText}
                     onClick={handleCancel}
-                    className={`px-4 py-2 rounded font-medium flex items-center gap-2 cursor-pointer transition-colors variant-${cancelVariant} bg-gray-200 hover:bg-gray-300 text-black`}
-                >
-                    {cancelIcon && <FontAwesomeIcon icon={cancelIcon} />}
-                    {cancelText}
-                </button>
+                    icon={cancelIcon}
+                    variant={cancelVariant}
+                    size="sm"
+                />
 
-                <button
+                <Button
+                    text={confirmText}
                     onClick={handleConfirm}
-                    className={`px-4 py-2 rounded font-medium flex items-center gap-2 cursor-pointer transition-colors variant-${confirmVariant} ${
-                        confirmVariant === "danger" ? "bg-red-600 hover:bg-red-700 text-white" : "bg-blue-600 hover:bg-blue-700 text-white"
-                    }`}
-                >
-                    {confirmIcon && <FontAwesomeIcon icon={confirmIcon} />}
-                    {confirmText}
-                </button>
+                    icon={confirmIcon}
+                    variant={confirmVariant}
+                    size="sm"
+                />
 
             </div>
         </MessageBox>

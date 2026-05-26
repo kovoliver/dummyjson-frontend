@@ -5,11 +5,14 @@ import ProductsService from "../../app/ProductsService";
 import type { Product, ProductResponse } from "../../core/types";
 import { Link } from "react-router-dom";
 import { ButtonDanger, ButtonMain } from "../../components/ui/Buttons";
+import { useConfirm } from "../../components/modules/ConfirmationProvider";
+import type { ConfirmationOptions } from "../../core/interfaces";
 
 const ps = new ProductsService();
 
 export default function ProductsPage() {
     const notifyContext = useNotify();
+    const confirmContext = useConfirm();
     const [products, setProducts] = useState<Product[]>([]);
     const [limit] = useState(12);
     const [skip, setSkip] = useState(0);
@@ -18,7 +21,7 @@ export default function ProductsPage() {
 
     const getProducts = useCallback(async (currentSkip: number) => {
         if (loading || !hasMore) return;
-        
+
         setLoading(true);
         try {
             const response: ProductResponse = await ps.getProducts(limit, currentSkip);
@@ -36,15 +39,34 @@ export default function ProductsPage() {
         }
     }, [limit, loading, hasMore, notifyContext]);
 
-    const deleteProduct = async (id:number)=> {
+    const deleteConfirm = async (id: number, title: string) => {
+        const msg = `Do you want to delete the following product: ${title}?`;
+
+        const confOptions:ConfirmationOptions = {
+            title: "Product deletion",
+            message: msg,
+            messageType: "info",
+            confirmText:"delete",
+            confirmVariant: "danger",
+            cancelVariant: "main",
+            confirmIcon: "check",
+            cancelIcon: "xmark",
+            onConfirm: () => {deleteProduct(id)},
+            onCancel: () => {}
+        } as const;
+
+        confirmContext.askConfirmation(confOptions);
+    };
+
+    const deleteProduct = async (id: number) => {
         try {
             const response = await ps.deleteProduct(id);
 
-            const msg = response.isDeleted ? "You have successfully deleted the product." 
-            : "Something went wrong. Please, try againt later!";
-            notifyContext.setMessage(msg);
-            notifyContext.setMessage(response.isDeleted ? "success" : "warning");
-        } catch(err:any) {
+            const msg = response.isDeleted ? "You have successfully deleted the product."
+                : "Something went wrong. Please, try againt later!";
+
+
+        } catch (err: any) {
             notifyContext.setMessage(err);
             notifyContext.setMessageType("danger");
         }
@@ -77,7 +99,7 @@ export default function ProductsPage() {
                     customClasses={["mx-auto my-2 block"]}
                 />
             </Link>
-            
+
             <div className="grid grid-cols-12">
                 {products.map((p, index) => (
                     <div key={index} className="p-2 lg:col-span-4 md:col-span-6 sm:col-span-12 col-span-12 text-center">
@@ -100,6 +122,7 @@ export default function ProductsPage() {
                                         text="Delete"
                                         icon="trash"
                                         size="sm"
+                                        onClick={()=>deleteConfirm(p.id, p.title)}
                                     />
                                 </div>
                             </div>

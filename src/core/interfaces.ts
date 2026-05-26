@@ -41,16 +41,6 @@ export interface ConfirmationContextType {
     handleCancel: () => void;
 }
 
-export interface ConfirmationContextType {
-    title: string | undefined;
-    message: string | string[] | Record<string, any> | null;
-    messageType: "success" | "warning" | "danger" | "info";
-    isVisible:boolean;
-    askConfirmation: (options: ConfirmationOptions) => void;
-    handleConfirm: () => void;
-    handleCancel: () => void;
-}
-
 export interface ButtonProps {
     text:string;
     variant?:"primary"|"secondary"|"danger"|"main"|"accent"|"warning";

@@ -54,8 +54,8 @@ export default function DashboardLayout() {
                 </BoxSecondary>
             </nav>
             <div className="lg:col-span-9 sm:col-span-12 col-span-12">
-                <GlobalNotifications/>
                 <GlobalConfirmation/>
+                <GlobalNotifications/>
                 <Outlet/>
             </div>
         </div>
