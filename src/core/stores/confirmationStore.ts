@@ -33,7 +33,7 @@ export const useConfirmationStore = create<ConfirmationStoreType>((set, get) => 
             confirmIcon: options.confirmIcon,
             cancelIcon: options.cancelIcon,
             confirmCallback: options.onConfirm as any,
-            cancelCallback: options.onCancel ? () => options.onCancel : null,
+            cancelCallback: options.onCancel || null,
             isVisible: true,
         });
     },
