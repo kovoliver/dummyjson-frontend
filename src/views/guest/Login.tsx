@@ -76,6 +76,7 @@ export default function Login() {
                         icon="sign-in"
                         customClasses={['block mx-auto my-3']}
                         onClick={login}
+                        isSubmit={true}
                     />
                 </form>
             </BoxSecondary>

@@ -9,7 +9,7 @@ export const useUserStore = create<UserContextType>((set, get) => ({
     accessToken: null,
     refreshToken: null,
     isAuthenticated: false,
-    authLoading: false,
+    authLoading: true,
     fetching: false,
     submitting: false,
 
