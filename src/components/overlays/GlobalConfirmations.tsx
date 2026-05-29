@@ -1,6 +1,7 @@
 import MessageBox from "../ui/MessageBox";
 import Button from "../ui/Button";
 import { useConfirmationStore } from "../../core/stores/confirmationStore";
+import { useShallow } from 'zustand/react/shallow';
 
 export default function GlobalConfirmation() {
     const {
@@ -16,20 +17,22 @@ export default function GlobalConfirmation() {
         cancelIcon,
         handleConfirm,
         handleCancel,
-    } = useConfirmationStore((state) => ({
-        isVisible: state.isVisible,
-        title: state.title,
-        message: state.message,
-        messageType: state.messageType,
-        confirmText: state.confirmText,
-        cancelText: state.cancelText,
-        confirmVariant: state.confirmVariant,
-        cancelVariant: state.cancelVariant,
-        confirmIcon: state.confirmIcon,
-        cancelIcon: state.cancelIcon,
-        handleConfirm: state.handleConfirm,
-        handleCancel: state.handleCancel,
-    }));
+    } = useConfirmationStore(
+        useShallow((state) => ({
+            isVisible: state.isVisible,
+            title: state.title,
+            message: state.message,
+            messageType: state.messageType,
+            confirmText: state.confirmText,
+            cancelText: state.cancelText,
+            confirmVariant: state.confirmVariant,
+            cancelVariant: state.cancelVariant,
+            confirmIcon: state.confirmIcon,
+            cancelIcon: state.cancelIcon,
+            handleConfirm: state.handleConfirm,
+            handleCancel: state.handleCancel,
+        }))
+    );
 
     if (!isVisible) return null;
 
