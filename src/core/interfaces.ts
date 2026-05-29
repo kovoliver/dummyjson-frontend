@@ -27,7 +27,7 @@ export interface ConfirmationOptions {
     cancelVariant?: ThemeColorType;
     confirmIcon: IconProp|undefined;
     cancelIcon: IconProp|undefined;
-    onConfirm: () => void | null;
+    onConfirm: (() => void | Promise<void>) | null;
     onCancel?: () => void | null;
 }
 
@@ -42,9 +42,12 @@ export interface ConfirmationContextType {
     cancelVariant: ThemeColorType;
     confirmIcon: IconProp|undefined;
     cancelIcon: IconProp|undefined;
+    confirmCallback: (() => void | Promise<void>) | null;
+    cancelCallback: (() => void) | null;
     askConfirmation: (options: ConfirmationOptions) => void;
     handleConfirm: () => void;
     handleCancel: () => void;
+    closeAndReset: () => void;
 }
 
 export interface NotificationContextType {
@@ -62,7 +65,8 @@ export interface ButtonProps {
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
     icon?:IconProp|null;
-    isSubmit?:boolean;
+    isLoading?:boolean;
+    disabled?:boolean;
     onClick?: ((...args: any[]) => any) | null;
 }
 

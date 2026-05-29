@@ -9,9 +9,11 @@ import { ButtonMain } from "../../components/ui/Buttons";
 import { handleChange, validateForm } from "../../core/utils";
 import { productValidationSchema } from "../../core/ValidationSchemes";
 import { useNotificationStore } from "../../core/stores/notificationStore";
+import { useUserStore } from "../../core/stores/userStore";
 
 export default function ProductPage() {
     const ps = useMemo(()=>new ProductsService(), []);
+    const submitting = useUserStore(state=>state.submitting);
     const navigate = useNavigate();
     const {id} = useParams();
     
@@ -177,7 +179,8 @@ export default function ProductPage() {
                     <ButtonMain
                         text="Save"
                         icon="save"
-                        isSubmit={true}
+                        isLoading={submitting}
+                        disabled={submitting}
                     />
                 </div>
             </form>

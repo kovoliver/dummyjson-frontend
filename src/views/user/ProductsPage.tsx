@@ -9,6 +9,7 @@ import { InputMain } from "../../components/ui/Inputs";
 import { SelectMain } from "../../components/ui/Selects";
 import { useNotificationStore } from "../../core/stores/notificationStore";
 import { useConfirmationStore } from "../../core/stores/confirmationStore";
+import { useUserStore } from "../../core/stores/userStore";
 
 const ps = new ProductsService();
 
@@ -24,6 +25,7 @@ export default function ProductsPage() {
     const [loading, setLoading] = useState(false);
     const [total, setTotal] = useState(0);
     const [hasMore, setHasMore] = useState(true);
+    const submitting = useUserStore(state=>state.submitting);
 
     const observerRef = useRef<HTMLDivElement | null>(null);
 
@@ -182,7 +184,8 @@ export default function ProductsPage() {
                                         icon="trash"
                                         size="sm"
                                         onClick={() => deleteConfirm(p.id, p.title)}
-                                        isSubmit={true}
+                                        isLoading={submitting}
+                                        disabled={submitting}
                                     />
                                 </div>
                             </div>

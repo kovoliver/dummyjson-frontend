@@ -1,13 +1,7 @@
 import { create } from "zustand";
 import type { ConfirmationContextType, ConfirmationOptions } from "../interfaces";
 
-interface ConfirmationStoreType extends ConfirmationContextType {
-    confirmCallback: (() => void | Promise<void>) | null;
-    cancelCallback: (() => void) | null;
-    closeAndReset: () => void;
-}
-
-export const useConfirmationStore = create<ConfirmationStoreType>((set, get) => ({
+export const useConfirmationStore = create<ConfirmationContextType>((set, get) => ({
     title: undefined,
     message: null,
     messageType: "warning",

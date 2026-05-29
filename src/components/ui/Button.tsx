@@ -1,21 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // <-- Ezt hozd be!
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import type { ButtonProps } from "../../core/interfaces";
 import { ButtonVariants } from "../../core/theme";
-import { useUserStore } from "../../core/stores/userStore";
 
-export default function Button({ 
+export default function Button({
     text, 
     variant, 
     size, 
     customClasses = null, 
     icon = null, 
     onClick = null, 
-    isSubmit = false 
+    isLoading = false,
+    disabled = false
 }: ButtonProps) {
-    const submitting = useUserStore(state => isSubmit ? state.submitting : false);
-
-    let classes = !submitting ? ButtonVariants({ variant, size })
+    let classes = !disabled ? ButtonVariants({ variant, size })
     : ButtonVariants({ variant:"disabled", size });
     
     classes += customClasses ? " " + customClasses.join(" ") : "";
@@ -24,13 +22,13 @@ export default function Button({
         <button 
             className={`rounded transition-all duration-200 ${classes}`} 
             onClick={onClick || undefined}
-            disabled={isSubmit && submitting}
+            disabled={disabled}
         >
-            <span className={icon || (isSubmit && submitting) ? "mr-2" : ""}>
+            <span className={icon || (isLoading) ? "mr-2" : ""}>
                 {text}
             </span>
 
-            {isSubmit && submitting ? (
+            {isLoading ? (
                 <FontAwesomeIcon icon={faSpinner} spin />
             ) : (
                 icon && <FontAwesomeIcon icon={icon} />
