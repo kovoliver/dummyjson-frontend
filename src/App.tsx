@@ -20,7 +20,6 @@ import Login from './views/guest/Login';
 import ProfilePage from './views/user/ProfilePage';
 import ProductsPage from './views/user/ProductsPage';
 import ProductPage from './views/user/ProductPage';
-import ConfirmationProvider from './components/providers/ConfirmationProvider';
 import { useUserStore } from './core/stores/userStore';
 import { useEffect } from 'react';
 
@@ -42,22 +41,20 @@ function App() {
     }, [verifyUser]);
 
     return (
-        <ConfirmationProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route element={<GuestLayout />}>
-                        <Route path="/" element={<Login />} />
-                    </Route>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<GuestLayout />}>
+                    <Route path="/" element={<Login />} />
+                </Route>
 
-                    <Route element={<DashboardLayout />}>
-                        <Route path="/user/profile" element={<ProfilePage />} />
-                        <Route path="/user/products" element={<ProductsPage />} />
-                        <Route path="/user/product" element={<ProductPage />} />
-                        <Route path="/user/product/:id" element={<ProductPage />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </ConfirmationProvider>
+                <Route element={<DashboardLayout />}>
+                    <Route path="/user/profile" element={<ProfilePage />} />
+                    <Route path="/user/products" element={<ProductsPage />} />
+                    <Route path="/user/product" element={<ProductPage />} />
+                    <Route path="/user/product/:id" element={<ProductPage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     )
 }
 

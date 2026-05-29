@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ProductFormData } from "../../core/types";
-import { useNotify } from "../../components/providers/NotificationProvider";
 import { InputMain } from "../../components/ui/Inputs";
 import { BoxSecondary } from "../../components/ui/Boxes";
 import TagInput from "../../components/ui/TagInput";
@@ -9,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ButtonMain } from "../../components/ui/Buttons";
 import { handleChange, validateForm } from "../../core/utils";
 import { productValidationSchema } from "../../core/ValidationSchemes";
+import { useNotificationStore } from "../../core/stores/notificationStore";
 
 export default function ProductPage() {
     const ps = useMemo(()=>new ProductsService(), []);
@@ -34,7 +34,8 @@ export default function ProductPage() {
         tags: ""
     });
     
-    const notifyContext = useNotify();
+    const setMessage = useNotificationStore(state=>state.setMessage);
+    const setMessageType = useNotificationStore(state=>state.setMessageType);
 
     const addProduct = async () => {
         try {
@@ -48,14 +49,13 @@ export default function ProductPage() {
             const product = !isUpdate ? await ps.addProduct(productData) 
             : await ps.updateProduct(parseInt(id as string), productData);
 
-            notifyContext.setMessage(`You have successfully ${isUpdate ? 'updated' : 'added'} your product!`);
-            notifyContext.setMessageType("success");
+            setMessage(`You have successfully ${isUpdate ? 'updated' : 'added'} your product!`);
+            setMessageType("success");
             
             if(!isUpdate) navigate(`/product/${product.id}`);
         } catch (err: any) {
-            notifyContext.setMessage(err);
-            notifyContext.setMessageType("danger");
-            notifyContext.setIsVisible(true);
+            setMessage(err);
+            setMessageType("danger");
         }
     };
 
@@ -66,9 +66,8 @@ export default function ProductPage() {
             const response = await ps.getProduct(parseInt(id as string));
             setProductData(response);
         } catch (err: any) {
-            notifyContext.setMessage(err);
-            notifyContext.setMessageType("danger");
-            notifyContext.setIsVisible(true);
+            setMessage(err);
+            setMessageType("danger");
         }
     };
 

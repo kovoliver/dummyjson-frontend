@@ -1,20 +1,21 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { BoxAccent, BoxSecondary } from "../../components/ui/Boxes";
-import { useNotify } from "../../components/providers/NotificationProvider";
 import ProductsService from "../../app/ProductsService";
 import type { Product, ProductResponse } from "../../core/types";
 import { Link } from "react-router-dom";
 import { ButtonDanger, ButtonMain } from "../../components/ui/Buttons";
-import { useConfirm } from "../../components/providers/ConfirmationProvider";
 import type { ConfirmationOptions } from "../../core/interfaces";
 import { InputMain } from "../../components/ui/Inputs";
 import { SelectMain } from "../../components/ui/Selects";
+import { useNotificationStore } from "../../core/stores/notificationStore";
+import { useConfirmationStore } from "../../core/stores/confirmationStore";
 
 const ps = new ProductsService();
 
 export default function ProductsPage() {
-    const notifyContext = useNotify();
-    const confirmContext = useConfirm();
+    const setMessage = useNotificationStore(state=>state.setMessage);
+    const setMessageType = useNotificationStore(state=>state.setMessageType);
+    const askConfirmation = useConfirmationStore(state=>state.askConfirmation);
     const [products, setProducts] = useState<Product[]>([]);
     const [limit, setLimit] = useState(12);
     const [skip, setSkip] = useState(0);
@@ -54,12 +55,12 @@ export default function ProductsPage() {
                 });
             }
         } catch (err: any) {
-            notifyContext.setMessage(err);
-            notifyContext.setMessageType("danger");
+            setMessage(err);
+            setMessageType("danger");
         } finally {
             setLoading(false);
         }
-    }, [limit, notifyContext]);
+    }, [limit]);
 
     useEffect(() => {
         getProducts(skip, debounceKeyword);
@@ -105,7 +106,7 @@ export default function ProductsPage() {
             onConfirm: () => { deleteProduct(id) }
         } as const;
 
-        confirmContext.askConfirmation(confOptions);
+        askConfirmation(confOptions);
     };
 
     const deleteProduct = async (id: number) => {
@@ -115,8 +116,8 @@ export default function ProductsPage() {
                 setProducts(prev => prev.filter(p => p.id !== id));
             else throw "Something went wrong. Please, try again later!";
         } catch (err: any) {
-            notifyContext.setMessage(err);
-            notifyContext.setMessageType("danger");
+            setMessage(err);
+            setMessageType("danger");
         }
     };
 
