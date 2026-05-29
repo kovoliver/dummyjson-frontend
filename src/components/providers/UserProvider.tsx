@@ -1,4 +1,3 @@
-// context/UserContext.tsx
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { UserContextType } from '../../core/interfaces';
 import type { User } from '../../core/types';
@@ -24,9 +23,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const logout = () => {
         setUser(null);
         setAccessToken(null);
-        Cookies.set("accessToken", "", { expires:0, secure: true, sameSite: 'strict' });
-        Cookies.set("refreshToken", "", { expires:0, secure: true, sameSite: 'strict' });
-        setIsAuthenticated(true);
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
+        setIsAuthenticated(false);
     };
 
     const verifyUser = async () => {

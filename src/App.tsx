@@ -10,7 +10,8 @@ import {
     faCaretRight,
     faCaretLeft,
     faUpRightFromSquare,
-    faArrowUpRightFromSquare
+    faArrowUpRightFromSquare,
+    faRightFromBracket
 } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GuestLayout from './components/layouts/GuestLayout';
@@ -30,7 +31,7 @@ library.add(
     faMagnifyingGlass, faFloppyDisk, faCircleXmark,
     faRightToBracket, faSignIn, faCaretRight,
     faCaretLeft, faUpRightFromSquare,
-    faArrowUpRightFromSquare
+    faArrowUpRightFromSquare, faRightFromBracket
 );
 
 function App() {
