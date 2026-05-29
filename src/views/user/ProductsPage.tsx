@@ -161,7 +161,8 @@ export default function ProductsPage() {
                         <BoxAccent>
                             <b className="block font-bold">{p.title}</b>
                             <Link to={`/user/product/${p.id}`}>
-                                <img className="py-3 mx-auto bg-white rounded my-3" src={p.thumbnail} alt={p.title} />
+                                <img className="py-3 mx-auto bg-white rounded my-3 w-full" 
+                                src={p.thumbnail} alt={p.title} />
                             </Link>
 
                             <div className="grid grid-cols-2">

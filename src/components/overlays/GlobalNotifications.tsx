@@ -1,26 +1,29 @@
 import { useEffect } from "react";
-import { useNotify } from "../providers/NotificationProvider";
 import Alert from "../ui/Alert";
 import { normalizeMessages } from "../../core/utils";
+import { useNotificationStore } from "../../core/stores/notificationStore";
 
 export default function GlobalNotifications() {
-    const notifyContext = useNotify();
-
-    const messages = normalizeMessages(notifyContext.message);
+    const messageType = useNotificationStore((state)=>state.messageType);
+    const isVisible = useNotificationStore((state)=>state.isVisible);
+    const setIsVisible = useNotificationStore(state=>state.setIsVisible);
+    const message = useNotificationStore((state)=>state.message);
+    const messages = normalizeMessages(message);
+    const setMessage = useNotificationStore((state)=>state.setMessage);
 
     useEffect(() => {
-        notifyContext.setIsVisible(messages.length > 0);
-    }, [notifyContext.message]);
+        setIsVisible(messages.length > 0);
+    }, [messages]);
 
     return (
         <div className="max-w-125 mx-auto">
             {messages.map((msg, i) => (
                 <Alert
                     key={i}
-                    variant={notifyContext.messageType}
-                    isVisible={notifyContext.isVisible}
-                    setIsVisible={notifyContext.setIsVisible}
-                    onClose={() => notifyContext.setMessage(messages.filter((_, index)=>index !== i))}
+                    variant={messageType}
+                    isVisible={isVisible}
+                    setIsVisible={setIsVisible}
+                    onClose={() => setMessage(messages.filter((_, index)=>index !== i))}
                     customClasses={["my-3"]}
                 >
                     {msg}

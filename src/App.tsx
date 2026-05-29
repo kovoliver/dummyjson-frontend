@@ -16,13 +16,13 @@ import {
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GuestLayout from './components/layouts/GuestLayout';
 import DashboardLayout from './components/layouts/DashboardLayout';
-import { UserProvider } from './components/providers/UserProvider';
 import Login from './views/guest/Login';
-import NotificationProvider from './components/providers/NotificationProvider';
 import ProfilePage from './views/user/ProfilePage';
 import ProductsPage from './views/user/ProductsPage';
 import ProductPage from './views/user/ProductPage';
 import ConfirmationProvider from './components/providers/ConfirmationProvider';
+import { useUserStore } from './core/stores/userStore';
+import { useEffect } from 'react';
 
 library.add(
     faPlus, faTrash, faCheck,
@@ -35,27 +35,29 @@ library.add(
 );
 
 function App() {
-    return (
-        <NotificationProvider>
-            <ConfirmationProvider>
-                <UserProvider>
-                    <BrowserRouter>
-                        <Routes>
-                            <Route element={<GuestLayout />}>
-                                <Route path="/" element={<Login/>}/>
-                            </Route>
+    const verifyUser = useUserStore((state) => state.verifyUser);
 
-                            <Route element={<DashboardLayout />}>
-                                <Route path="/user/profile" element={<ProfilePage/>}/>
-                                <Route path="/user/products" element={<ProductsPage/>}/>
-                                <Route path="/user/product" element={<ProductPage/>}/>
-                                <Route path="/user/product/:id" element={<ProductPage/>}/>
-                            </Route>
-                        </Routes>
-                    </BrowserRouter>
-                </UserProvider>
-            </ConfirmationProvider>
-        </NotificationProvider>
+    useEffect(() => {
+        verifyUser();
+    }, [verifyUser]);
+
+    return (
+        <ConfirmationProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<GuestLayout />}>
+                        <Route path="/" element={<Login />} />
+                    </Route>
+
+                    <Route element={<DashboardLayout />}>
+                        <Route path="/user/profile" element={<ProfilePage />} />
+                        <Route path="/user/products" element={<ProductsPage />} />
+                        <Route path="/user/product" element={<ProductPage />} />
+                        <Route path="/user/product/:id" element={<ProductPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </ConfirmationProvider>
     )
 }
 

@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { BoxSecondary } from "../ui/Boxes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useUser } from "../providers/UserProvider";
+import { useUserStore } from "../../core/stores/userStore";
 
 export default function Navbar() {
     const location = useLocation();
-    const { logout } = useUser();
+    const logout = useUserStore((state)=>state.logout);
 
     const highlightMenu = (menu:string)=> {
         return location.pathname === menu ? 

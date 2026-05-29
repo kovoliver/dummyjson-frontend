@@ -1,22 +1,21 @@
 import MessageBox from "../ui/MessageBox";
-import { useConfirm } from "../providers/ConfirmationProvider";
 import Button from "../ui/Button";
+import { useConfirmationStore } from "../../core/stores/confirmationStore";
 
 export default function GlobalConfirmation() {
-    const { 
-        isVisible, 
-        title, 
-        message, 
-        messageType, 
-        confirmText, 
-        cancelText, 
-        confirmVariant, 
-        cancelVariant, 
-        confirmIcon, 
-        cancelIcon,
-        handleConfirm, 
-        handleCancel 
-    } = useConfirm();
+    const isVisible = useConfirmationStore((state) => state.isVisible);
+    const title = useConfirmationStore((state) => state.title);
+    const message = useConfirmationStore((state) => state.message);
+    const messageType = useConfirmationStore((state) => state.messageType);
+    const confirmText = useConfirmationStore((state) => state.confirmText);
+    const cancelText = useConfirmationStore((state) => state.cancelText);
+    const confirmVariant = useConfirmationStore((state) => state.confirmVariant);
+    const cancelVariant = useConfirmationStore((state) => state.cancelVariant);
+    const confirmIcon = useConfirmationStore((state) => state.confirmIcon);
+    const cancelIcon = useConfirmationStore((state) => state.cancelIcon);
+    
+    const handleConfirm = useConfirmationStore((state) => state.handleConfirm);
+    const handleCancel = useConfirmationStore((state) => state.handleCancel);
 
     if (!isVisible) return null;
 
@@ -45,7 +44,6 @@ export default function GlobalConfirmation() {
                     variant={confirmVariant}
                     size="sm"
                 />
-
             </div>
         </MessageBox>
     );

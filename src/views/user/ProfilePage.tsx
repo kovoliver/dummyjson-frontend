@@ -1,7 +1,7 @@
-import { useUser } from "../../components/providers/UserProvider";
+import { useUserStore } from "../../core/stores/userStore";
 
 export default function ProfilePage() {
-    const { user } = useUser();
+    const user = useUserStore((state)=>state.user);
 
     if(!user) {
         return null;

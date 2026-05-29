@@ -6,10 +6,15 @@ export interface UserContextType {
     user: User | null;
     accessToken: string | null;
     isAuthenticated: boolean;
-    loading: boolean;
-    login: (userData: User, accessTokrn: string, refreshToken:string) => void;
+    authLoading: boolean;
+    fetching:boolean;
+    submitting:boolean;
+    login: (userData: User, accessToken: string, refreshToken:string) => void;
     logout: () => void;
-    setLoading: (loading: boolean) => void;
+    setAuthLoading: (loading: boolean) => void;
+    setFetching: (loading: boolean) => void;
+    setSubmitting: (loading: boolean) => void;
+    verifyUser:()=>void;
 }
 
 export interface ConfirmationOptions {
@@ -40,6 +45,15 @@ export interface ConfirmationContextType {
     askConfirmation: (options: ConfirmationOptions) => void;
     handleConfirm: () => void;
     handleCancel: () => void;
+}
+
+export interface NotificationContextType {
+    message: string | string[] | Record<string, any> | null;
+    messageType: ThemeColorType;
+    isVisible: boolean;
+    setMessage: (message: any) => void;
+    setMessageType: (type: ThemeColorType) => void;
+    setIsVisible: (isVisible: boolean) => void;
 }
 
 export interface ButtonProps {

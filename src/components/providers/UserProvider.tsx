@@ -10,7 +10,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [refreshToken, setRefreshToken] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [authLoading, setAuthLoading] = useState<boolean>(true);
+    const [fetching, setFetching] = useState<boolean>(true);
+    const [submitting, setSubmitting] = useState<boolean>(true);
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -48,7 +50,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
             console.error("Az újra-hitelesítés sikertelen", err);
             logout();
         } finally {
-            setLoading(false);
+            setAuthLoading(false);
         }
     };
 
@@ -73,10 +75,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
             user,
             accessToken,
             isAuthenticated,
-            loading,
+            authLoading,
             login,
             logout,
-            setLoading
+            setAuthLoading,
+            fetching,
+            setFetching,
+            submitting,
+            setSubmitting
         }}>
             {children}
         </UserContext.Provider>

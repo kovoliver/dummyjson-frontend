@@ -3,18 +3,19 @@ import AuthService from "../../app/AuthService";
 import { InputMain } from "../../components/ui/Inputs";
 import { BoxSecondary } from "../../components/ui/Boxes";
 import { ButtonMain } from "../../components/ui/Buttons";
-import { useUser } from "../../components/providers/UserProvider";
 import type { User } from "../../core/types";
 import { useNavigate } from "react-router-dom";
-import { useNotify } from "../../components/providers/NotificationProvider";
+import { useUserStore } from "../../core/stores/userStore";
+import { useNotificationStore } from "../../core/stores/notificationStore";
 
 export default function Login() {
     const as: AuthService = new AuthService();
     const [username, setUsername] = useState<string>("emilys");
     const [password, setPassword] = useState<string>("emilyspass");
     const navigate = useNavigate();
-    const userContext = useUser();
-    const notifyContext = useNotify();
+    const loginState = useUserStore((state)=>state.login);
+    const setMessage = useNotificationStore((state)=>state.setMessage);
+    const setMessageType = useNotificationStore((state)=>state.setMessageType);
 
     async function login(e:any):Promise<void> {
         e.preventDefault();
@@ -33,7 +34,7 @@ export default function Login() {
                 gender:response.gender
             };
 
-            userContext.login(
+            loginState(
                 userData, 
                 response.accessToken,
                 response.refreshToken
@@ -41,8 +42,8 @@ export default function Login() {
             
             navigate("/user/profile");
         } catch (err:any) {
-            notifyContext.setMessage(err);
-            notifyContext.setMessageType("danger");
+            setMessage(err);
+            setMessageType("danger");
         }
     };
 

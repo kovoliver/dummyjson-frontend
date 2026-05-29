@@ -1,11 +1,12 @@
 import { createContext, useContext, useState, type ReactNode } from "react"
-import type { NotificationContexType } from "../../core/interfaces";
+import type { NotificationContextType } from "../../core/interfaces";
+import type { ThemeColorType } from "../../core/theme";
 
-export const NotifyContext = createContext<NotificationContexType|null>(null);
+export const NotifyContext = createContext<NotificationContextType|null>(null);
 
 export default function NotificationProvider({ children }: { children: ReactNode }) {
     const [message, setMessage] = useState<string|string[]|Record<string,any>|null>(null);
-    const [messageType, setMessageType] = useState<"success"|"warning"|"danger"|"info">("success");
+    const [messageType, setMessageType] = useState<ThemeColorType>("success");
     const [isVisible, setIsVisible] = useState(false);
 
     return(
