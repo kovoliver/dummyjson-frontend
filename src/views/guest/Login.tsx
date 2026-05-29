@@ -16,6 +16,7 @@ export default function Login() {
     const loginState = useUserStore((state)=>state.login);
     const setMessage = useNotificationStore((state)=>state.setMessage);
     const setMessageType = useNotificationStore((state)=>state.setMessageType);
+    const submitting = useUserStore(state=>state.submitting);
 
     async function login(e:any):Promise<void> {
         e.preventDefault();
@@ -76,7 +77,8 @@ export default function Login() {
                         icon="sign-in"
                         customClasses={['block mx-auto my-3']}
                         onClick={login}
-                        isSubmit={true}
+                        isLoading={submitting}
+                        disabled={submitting}
                     />
                 </form>
             </BoxSecondary>
