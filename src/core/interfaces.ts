@@ -2,7 +2,7 @@ import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import type { User } from "./types";
 import type { ThemeColorType } from "./theme";
 
-export interface UserContextType {
+export interface UserStoreType {
     user: User | null;
     accessToken: string | null;
     isAuthenticated: boolean;
@@ -31,7 +31,7 @@ export interface ConfirmationOptions {
     onCancel?: () => void | null;
 }
 
-export interface ConfirmationContextType {
+export interface ConfirmationStoreType {
     title: string | undefined;
     message: string | string[] | Record<string, any> | null;
     messageType: ThemeColorType;
@@ -50,7 +50,7 @@ export interface ConfirmationContextType {
     closeAndReset: () => void;
 }
 
-export interface NotificationContextType {
+export interface NotificationStoreType {
     message: string | string[] | Record<string, any> | null;
     messageType: ThemeColorType;
     isVisible: boolean;

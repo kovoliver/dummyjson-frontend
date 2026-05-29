@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import type { ConfirmationContextType, ConfirmationOptions } from "../interfaces";
+import type { ConfirmationStoreType, ConfirmationOptions } from "../interfaces";
 
-export const useConfirmationStore = create<ConfirmationContextType>((set, get) => ({
+export const useConfirmationStore = create<ConfirmationStoreType>((set, get) => ({
     title: undefined,
     message: null,
     messageType: "warning",

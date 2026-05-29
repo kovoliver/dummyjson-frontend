@@ -1,10 +1,10 @@
 import { create } from "zustand";
-import type { UserContextType } from "../interfaces";
+import type { UserStoreType } from "../interfaces";
 import type { User } from "../types";
 import api from "../api";
 import Cookies from "js-cookie";
 
-export const useUserStore = create<UserContextType>((set, get) => ({
+export const useUserStore = create<UserStoreType>((set, get) => ({
     user: null,
     accessToken: null,
     refreshToken: null,

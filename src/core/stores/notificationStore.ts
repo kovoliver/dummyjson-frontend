@@ -1,8 +1,8 @@
 import {create} from "zustand";
-import type { NotificationContextType } from "../interfaces";
+import type { NotificationStoreType } from "../interfaces";
 import { type ThemeColorType } from "../theme";
 
-export const useNotificationStore = create<NotificationContextType>((set)=>({
+export const useNotificationStore = create<NotificationStoreType>((set)=>({
     message:null,
     messageType:"success",
     isVisible:false,
