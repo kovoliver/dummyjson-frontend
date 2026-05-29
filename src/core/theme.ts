@@ -120,6 +120,12 @@ export const ButtonVariants = cva(
                 hover:bg-[color-mix(in_oklch,var(--color-success),white_10%)]
                 active:bg-[color-mix(in_oklch,var(--color-success),white_20%)]
                 `,
+                disabled: `
+                bg-gray-200 text-gray-400 border-gray-300
+                cursor-not-allowed
+                pointer-events-none
+                active:scale-100
+                `
             },
             size: inputSizes,
         },

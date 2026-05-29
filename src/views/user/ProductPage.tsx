@@ -177,6 +177,7 @@ export default function ProductPage() {
                     <ButtonMain
                         text="Save"
                         icon="save"
+                        isSubmit={true}
                     />
                 </div>
             </form>

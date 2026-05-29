@@ -62,6 +62,7 @@ export interface ButtonProps {
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     customClasses?:string[]|null;
     icon?:IconProp|null;
+    isSubmit?:boolean;
     onClick?: ((...args: any[]) => any) | null;
 }
 

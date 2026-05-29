@@ -182,6 +182,7 @@ export default function ProductsPage() {
                                         icon="trash"
                                         size="sm"
                                         onClick={() => deleteConfirm(p.id, p.title)}
+                                        isSubmit={true}
                                     />
                                 </div>
                             </div>

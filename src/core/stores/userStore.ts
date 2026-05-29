@@ -9,9 +9,9 @@ export const useUserStore = create<UserContextType>((set, get) => ({
     accessToken: null,
     refreshToken: null,
     isAuthenticated: false,
-    authLoading: true,
-    fetching: true,
-    submitting: true,
+    authLoading: false,
+    fetching: false,
+    submitting: false,
 
     login: (userData, accessToken, refreshToken) => {
         Cookies.set("accessToken", accessToken, { expires: 1 / 48, secure: true, sameSite: 'strict' });
