@@ -1,6 +1,5 @@
 import type { ObjectSchema } from 'joi';
 import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import type { FormErrors } from './types';
 
 export function getValueByKey(object: Record<string, any>, key: string, context: string): string {
     if (!(key in object)) {

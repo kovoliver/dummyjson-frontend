@@ -3,7 +3,6 @@ import AuthService from "../../app/AuthService";
 import { InputMain } from "../../components/ui/Inputs";
 import { BoxSecondary } from "../../components/ui/Boxes";
 import { ButtonMain } from "../../components/ui/Buttons";
-import { apiCatch } from "../../core/utils";
 import { useUser } from "../../components/providers/UserProvider";
 import type { User } from "../../core/types";
 import { useNavigate } from "react-router-dom";
