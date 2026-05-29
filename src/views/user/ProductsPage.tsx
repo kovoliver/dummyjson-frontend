@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { BoxAccent, BoxSecondary } from "../../components/ui/Boxes";
-import { useNotify } from "../../components/modules/NotificationProvider";
+import { useNotify } from "../../components/providers/NotificationProvider";
 import ProductsService from "../../app/ProductsService";
 import type { Product, ProductResponse } from "../../core/types";
 import { Link } from "react-router-dom";
 import { ButtonDanger, ButtonMain } from "../../components/ui/Buttons";
-import { useConfirm } from "../../components/modules/ConfirmationProvider";
+import { useConfirm } from "../../components/providers/ConfirmationProvider";
 import type { ConfirmationOptions } from "../../core/interfaces";
 import { InputMain } from "../../components/ui/Inputs";
 import { SelectMain } from "../../components/ui/Selects";

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ProductFormData } from "../../core/types";
-import { useNotify } from "../../components/modules/NotificationProvider";
+import { useNotify } from "../../components/providers/NotificationProvider";
 import { InputMain } from "../../components/ui/Inputs";
 import { BoxSecondary } from "../../components/ui/Boxes";
 import TagInput from "../../components/ui/TagInput";

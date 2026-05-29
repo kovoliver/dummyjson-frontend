@@ -1,6 +1,5 @@
 import MessageBox from "../ui/MessageBox";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useConfirm } from "./ConfirmationProvider";
+import { useConfirm } from "../providers/ConfirmationProvider";
 import Button from "../ui/Button";
 
 export default function GlobalConfirmation() {

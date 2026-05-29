@@ -1,4 +1,4 @@
-import { useUser } from "../../components/modules/UserProvider";
+import { useUser } from "../../components/providers/UserProvider";
 
 export default function ProfilePage() {
     const { user } = useUser();

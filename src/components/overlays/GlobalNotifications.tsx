@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNotify } from "./NotificationProvider";
+import { useNotify } from "../providers/NotificationProvider";
 import Alert from "../ui/Alert";
 import { normalizeMessages } from "../../core/utils";
 

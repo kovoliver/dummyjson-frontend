@@ -15,13 +15,13 @@ import {
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GuestLayout from './components/layouts/GuestLayout';
 import DashboardLayout from './components/layouts/DashboardLayout';
-import { UserProvider } from './components/modules/UserProvider';
+import { UserProvider } from './components/providers/UserProvider';
 import Login from './views/guest/Login';
-import NotificationProvider from './components/modules/NotificationProvider';
+import NotificationProvider from './components/providers/NotificationProvider';
 import ProfilePage from './views/user/ProfilePage';
 import ProductsPage from './views/user/ProductsPage';
 import ProductPage from './views/user/ProductPage';
-import ConfirmationProvider from './components/modules/ConfirmationProvider';
+import ConfirmationProvider from './components/providers/ConfirmationProvider';
 
 library.add(
     faPlus, faTrash, faCheck,

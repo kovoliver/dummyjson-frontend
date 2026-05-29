@@ -1,9 +1,9 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { BoxSecondary } from "../ui/Boxes";
-import { useUser } from "../modules/UserProvider";
+import { useUser } from "../providers/UserProvider";
 import { ButtonWarning } from "../ui/Buttons";
-import GlobalNotifications from "../modules/GlobalNotifications";
-import GlobalConfirmation from "../modules/GlobalConfirmations";
+import GlobalNotifications from "../overlays/GlobalNotifications";
+import GlobalConfirmation from "../overlays/GlobalConfirmations";
 
 export default function DashboardLayout() {
     const location = useLocation();

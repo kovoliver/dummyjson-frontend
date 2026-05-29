@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import GlobalNotifications from "../modules/GlobalNotifications";
-import GlobalConfirmation from "../modules/GlobalConfirmations";
+import GlobalNotifications from "../overlays/GlobalNotifications";
+import GlobalConfirmation from "../overlays/GlobalConfirmations";
 
 export default function GuestLayout() {
     return (
