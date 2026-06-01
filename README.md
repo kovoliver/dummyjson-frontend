@@ -16,7 +16,9 @@ I also created tests using the following libraries:
 
 To run this application, you first need to install the required npm packages by executing the following command:
 
-*npm install*
+```bash
+npm install
+```
 
 This command automatically installs all required dependencies based on the provided `package.json` file.
 
@@ -24,7 +26,9 @@ This command automatically installs all required dependencies based on the provi
 
 Type the following command into the terminal and press Enter:
 
-*npm run test*
+```bash
+npm run test
+```
 
 ## Why Did I Use Vite?
 
