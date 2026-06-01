@@ -1,75 +1,39 @@
-# React + TypeScript + Vite
+# About the Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a modern frontend application built with **React 19**, **TypeScript**, and **Axios**.
 
-Currently, two official plugins are available:
+The project uses **Vite** as its build tool.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+I also created tests using the following libraries:
 
-## React Compiler
+* Vitest
+* happy-dom
+* @testing-library/react
+* @testing-library/user-event
+* @testing-library/jest-dom
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## How to Install
 
-Note: This will impact Vite dev & build performances.
+To run this application, you first need to install the required npm packages by executing the following command:
 
-## Expanding the ESLint configuration
+*npm install*
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This command automatically installs all required dependencies based on the provided `package.json` file.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## How to Run the Tests
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Type the following command into the terminal and press Enter:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*npm run test*
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Why Did I Use Vite?
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Vite is a modern and comprehensive build tool that provides features such as dependency pre-bundling and HMR (Hot Module Replacement). It also offers excellent support for modern development workflows and compatibility with many existing packages.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Thanks to its optimized build process, Vite delivers fast startup times and efficient development performance, even in larger projects.
+
+## What Is dummyjson.com?
+
+The website **dummyjson.com** provides mock REST API endpoints that developers can use for testing and learning purposes without creating a complete backend application.
+
+In this project, I used the `/products` endpoints, which provide sample product data and support the most common HTTP methods used in RESTful APIs.
