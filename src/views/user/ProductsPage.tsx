@@ -184,7 +184,6 @@ export default function ProductsPage() {
                                         icon="trash"
                                         size="sm"
                                         onClick={() => deleteConfirm(p.id, p.title)}
-                                        isLoading={submitting}
                                         disabled={submitting}
                                     />
                                 </div>
