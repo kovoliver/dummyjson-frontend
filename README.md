@@ -1,6 +1,7 @@
 # About the Application
 
 This is a modern frontend application built with **React 19**, **TypeScript**, and **Axios**.
+I implemented global state management using **Zustand**.
 
 The project uses **Vite** as its build tool.
 
