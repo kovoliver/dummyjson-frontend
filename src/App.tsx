@@ -23,6 +23,7 @@ import ProductsPage from './views/user/ProductsPage';
 import ProductPage from './views/user/ProductPage';
 import { useUserStore } from './core/stores/userStore';
 import { useEffect } from 'react';
+import NotFound from './views/guest/NotFound';
 
 library.add(
     faPlus, faTrash, faCheck,
@@ -55,6 +56,8 @@ function App() {
                     <Route path="/user/product" element={<ProductPage />} />
                     <Route path="/user/product/:id" element={<ProductPage />} />
                 </Route>
+
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     )
